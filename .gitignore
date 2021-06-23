@@ -1,0 +1,32 @@
+#=============================== okara Package =================================
+#================================= .gitignore ==================================
+#================= Ignore the following folder/files for git ===================
+
+#============================ User Folders/Files ===============================
+_notebook
+
+#=========================== System Folders/Files ==============================
+inst/doc
+/doc/
+/Meta/
+
+.Rproj.user
+.RData
+.Rhistory
+#.Ruserdata
+#rsconnect
+.Rdata
+.httr-oauth
+
+#*_cache
+#*_files
+
+#============================ Misc. Folders/Files ==============================
+#*.pdf
+#*.png
+
+.dropbox
+.DS_Store
+Icon
+Icon?
+Iconr
