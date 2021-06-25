@@ -1,6 +1,6 @@
 Package: okara
 Title: Ömer Kara's Personal Utility Functions
-Version: 1.0.0
+Version: 1.0.1
 Authors@R: 
     person(given = "Ömer",
            family = "Kara",
@@ -23,7 +23,8 @@ Imports:
     grid,
     sp,
     graphics,
-    fields
+    fields,
+    zoo
 Suggests: 
     rmarkdown,
     knitr,

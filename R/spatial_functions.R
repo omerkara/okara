@@ -123,7 +123,7 @@ scalebar <- function(loc, length, unit = "km", division.cex = .8, ...) {
         graphics::segments(x[i], y[2], x[i], y[3])
     }
     labels <- x[c(1, 3)] - loc[1]
-    labels <- base::append(labels, paste(x[5] - loc[1], unit))
+    labels <- append(labels, paste(x[5] - loc[1], unit))
     graphics::text(x[c(1, 3, 5)], y[4], labels = labels, adj = .5, cex = division.cex)
 }
 

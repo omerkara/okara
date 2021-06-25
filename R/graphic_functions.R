@@ -36,9 +36,9 @@
 #'
 g_legend <- function(a.gplot) {
     tmp <- ggplot2::ggplot_gtable(ggplot2::ggplot_build(a.gplot))
-    leg <- which(base::sapply(tmp$grobs, function(x) x$name) == "guide-box")
+    leg <- which(sapply(tmp$grobs, function(x) x$name) == "guide-box")
     legend <- tmp$grobs[[leg]]
-    base::return(legend)
+    return(legend)
 }
 
 #============================== annotation_compass =============================

@@ -7,7 +7,7 @@
 
 [![License:
 MIT](https://img.shields.io/badge/license-MIT-blue.svg)](https://cran.r-project.org/web/licenses/MIT)
-[![](https://img.shields.io/badge/devel%20version-1.0.0-blue.svg)](https://github.com/omerkara/okara)
+[![](https://img.shields.io/badge/devel%20version-1.0.1-blue.svg)](https://github.com/omerkara/okara)
 [![star this
 repo](https://githubbadges.com/star.svg?user=omerkara&repo=okara&style=default)](https://github.com/omerkara/okara)
 [![fork this

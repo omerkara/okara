@@ -41,9 +41,9 @@
 #'
 Ask.User.YN.Question <- function(question, GUI = TRUE, add.lines.before = TRUE) {
     choices <- c("yes", "no")
-    if (add.lines.before & !GUI) base::cat("------------------------\n")
+    if (add.lines.before & !GUI) cat("------------------------\n")
     answer <- utils::menu(choices, graphics = GUI, title = question)
-    base::ifelse(answer == 1L, TRUE, FALSE) ## Returns TRUE or FALSE.
+    ifelse(answer == 1L, TRUE, FALSE) ## Returns TRUE or FALSE.
 }
 
 #================================ DigitsByRows =================================
@@ -74,16 +74,16 @@ Ask.User.YN.Question <- function(question, GUI = TRUE, add.lines.before = TRUE) 
 #' @export
 #'
 DigitsByRows <- function(df, digits) {
-    tmp0 <- base::data.frame(t(df))
-    tmp1 <- base::mapply(
+    tmp0 <- data.frame(t(df))
+    tmp1 <- mapply(
         function(df0, digits0) {
             base::formatC(df0, format = "f", digits = digits0)
         },
         df0 = tmp0, digits0 = digits
     )
-    tmp1 <- base::data.frame(t(tmp1))
-    base::names(tmp1) <- base::names(df)
-    base::return(tmp1)
+    tmp1 <- data.frame(t(tmp1))
+    names(tmp1) <- names(df)
+    return(tmp1)
 }
 
 #============================== Perm.No.Replace ================================
@@ -112,14 +112,14 @@ DigitsByRows <- function(df, digits) {
 #' @export
 #'
 Perm.No.Replace <- function(v) {
-    n <- base::length(v)
+    n <- length(v)
     if (n == 1) {
         v
     }
     else {
         X <- NULL
         for (i in 1:n) {
-            X <- base::rbind(X, base::cbind(v[i], Perm.No.Replace(v[-i])))
+            X <- rbind(X, cbind(v[i], Perm.No.Replace(v[-i])))
         }
         X
     }
@@ -154,10 +154,10 @@ Perm.No.Replace <- function(v) {
 #' @export
 #'
 sampled <- function(x, size, replace = FALSE, prob = NULL) {
-    if (base::length(x) == 1) {
-        base::return(x)
+    if (length(x) == 1) {
+        return(x)
     } else {
-        base::sample(x, size = size, replace = replace, prob = prob)
+        sample(x, size = size, replace = replace, prob = prob)
     }
 }
 
@@ -187,7 +187,7 @@ sampled <- function(x, size, replace = FALSE, prob = NULL) {
 #' @export
 #'
 SignPrint <- function(x) {
-    base::ifelse(x > 0, "+", "-")
+    ifelse(x > 0, "+", "-")
 }
 
 #================= round0, round1, round2, round3, and round4 ==================
@@ -224,35 +224,35 @@ NULL
 #' @export
 #'
 round0 <- function(x) {
-    base::round(x + base::sign(x) * 1e-10, digits = 0)
+    round(x + base::sign(x) * 1e-10, digits = 0)
 }
 #'
 #' @rdname roundN
 #' @export
 #'
 round1 <- function(x) {
-    base::round(x + base::sign(x) * 1e-10, digits = 1)
+    round(x + base::sign(x) * 1e-10, digits = 1)
 }
 #'
 #' @rdname roundN
 #' @export
 #'
 round2 <- function(x) {
-    base::round(x + base::sign(x) * 1e-10, digits = 2)
+    round(x + base::sign(x) * 1e-10, digits = 2)
 }
 #'
 #' @rdname roundN
 #' @export
 #'
 round3 <- function(x) {
-    base::round(x + base::sign(x) * 1e-10, digits = 3)
+    round(x + base::sign(x) * 1e-10, digits = 3)
 }
 #'
 #' @rdname roundN
 #' @export
 #'
 round4 <- function(x) {
-    base::round(x + base::sign(x) * 1e-10, digits = 4)
+    round(x + base::sign(x) * 1e-10, digits = 4)
 }
 
 #================= trunc0, trunc1, trunc2, trunc3, and trunc4 ==================
@@ -289,34 +289,34 @@ NULL
 #' @export
 #'
 trunc0 <- function(x) {
-    base::trunc(x * 1)/1
+    trunc(x * 1)/1
 }
 #'
 #' @rdname truncN
 #' @export
 #'
 trunc1 <- function(x) {
-    base::trunc(x * 10)/10
+    trunc(x * 10)/10
 }
 #'
 #' @rdname truncN
 #' @export
 #'
 trunc2 <- function(x) {
-    base::trunc(x * 100)/100
+    trunc(x * 100)/100
 }
 #'
 #' @rdname truncN
 #' @export
 #'
 trunc3 <- function(x) {
-    base::trunc(x * 1000)/1000
+    trunc(x * 1000)/1000
 }
 #'
 #' @rdname truncN
 #' @export
 #'
 trunc4 <- function(x) {
-    base::trunc(x * 10000)/10000
+    trunc(x * 10000)/10000
 }
 #==================================== END ======================================
