@@ -26,7 +26,7 @@ round4(x)
 Numeric value or vector.
 }
 \description{
-This set of functions simplify and specialize the \code{\link[exams]{round2}} function. Each function rounds the given number to the decimal points specified in the function itself.
+This set of functions simplify and specialize the \code{\link[exams]{round2}} function in exam package. Each function rounds the given number to the decimal points specified in the function itself.
 }
 \details{
 The function \code{\link[exams]{round2}} does what is known in German as kaufmaennisches Runden (rounding away from zero for trailing 5s).
@@ -46,7 +46,7 @@ round4(2.67896)
 For more information see \code{\link[exams]{round2}}.
 }
 \seealso{
-
+\code{\link[exams]{round2}}
 }
 \author{
 \href{mailto:omer.kara.ylsy@gmail.com}{Ömer Kara}

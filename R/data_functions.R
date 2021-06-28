@@ -36,6 +36,7 @@
 #' @export
 #'
 Head.Tail <- function(x, Select) {
+    if (!requireNamespace("utils")) stop("Required utils package is missing.")
     if (Select %% 1 != 0)
         stop("Invalid Select. Please choose a whole number as Select.\n")
     rbind(utils::head(x, Select), utils::tail(x, Select))
@@ -67,43 +68,6 @@ Head.Tail <- function(x, Select) {
 #'
 Impute.NA.Mean <- function(x) {
     replace(x, is.na(x), mean(x, na.rm = TRUE))
-}
-
-#============================== Decimal.Num.Count ==============================
-#' @title Number of Decimal Places
-#'
-#' @description This function gives the number of decimal places of a number written as character string or numeric object.
-#'
-#' @param x Number in character or in numeric class.
-#'
-#' @details
-#'
-#' @note
-#'
-#' @author \href{mailto:omer.kara.ylsy@@gmail.com}{Ömer Kara}
-#'
-#' @references
-#'
-#' @seealso
-#'
-#' @return An integer
-#'
-#' @examples
-#' Decimal.Num.Count(0.1)
-#' Decimal.Num.Count("0.1")
-#'
-#' Decimal.Num.Count(0.12345)
-#' Decimal.Num.Count("0.12345")
-#'
-#' @export
-#'
-Decimal.Num.Count <- function(x) {
-    if (class(x) == "numeric") {
-        x <- as.character(x)
-    }
-    stopifnot(class(x) == "character")
-    x <- gsub("(.*)(\\.)|([0]*$)", "", x)
-    nchar(x)
 }
 
 #========================= Cubic.Spline.Interpolation ==========================
@@ -138,6 +102,7 @@ Decimal.Num.Count <- function(x) {
 #' @export
 #'
 Cubic.Spline.Interpolation <- function(Data, Column.Names) {
+    if (!requireNamespace("zoo")) stop("Required zoo package is missing.")
     # Checks Data argument.
     if (!is.data.frame(Data))
         stop("Invalid Data. Please choose a data.frame object for Data.\n")
@@ -184,6 +149,163 @@ Cubic.Spline.Interpolation <- function(Data, Column.Names) {
 
     # Naming and extracting the Data file to the general environment.
     assign("data.interpolate", Data, envir = globalenv()) ## Output data will be named as "data.interpolate".
+}
+
+#================================= logPercent ==================================
+#' @title Percentage Change for Log Variables
+#'
+#' @description This function makes sure that the level variable of interest increases/decreases, 10% i.e., while you are dealing with the log form.
+#'
+#' @param Variable numeric. A numeric value or vector in logarithmic form.
+#' @param Percent numeric. A numeric value representing percentage increase in the level form.
+#'
+#' @details
+#'
+#' @note
+#'
+#' @author \href{mailto:omer.kara.ylsy@@gmail.com}{Ömer Kara}
+#'
+#' @references
+#'
+#' @seealso
+#'
+#' @return A value in the logarithmic form which makes sure that the level form value has increased by the specified percentage.
+#'
+#' @examples
+#' x <- 100
+#' percent <- 10
+#' log(x)
+#' logPercent(log(x), percent)
+#' exp(logPercent(log(x), percent))
+#'
+#' @export
+#'
+logPercent <- function(Variable, Percent) {
+    Variable.New <- Variable + log(1 + Percent/100)
+    return(Variable.New)
+}
+
+#=================================== lagPad ====================================
+#' @title Lag Function with Padding
+#'
+#' @description This function pads the lag taken numeric vector with NA values.
+#'
+#' @param x numeric. A numeric vector.
+#' @param k numeric. A numeric lag value.
+#'
+#' @details
+#'
+#' @note
+#'
+#' @author \href{mailto:omer.kara.ylsy@@gmail.com}{Ömer Kara}
+#'
+#' @references
+#'
+#' @seealso
+#'
+#' @return A lag taken numeric vector with padding.
+#'
+#' @examples
+#' x <- 1:10
+#' x.t1 <- lagPad(x, 2)
+#' cbind(x, x.t1)
+#'
+#' @export
+#'
+lagPad <- function(x, k) {
+    if (!is.vector(x))
+        stop("x must be a vector")
+    if (!is.numeric(x))
+        stop("x must be numeric")
+    if (!is.numeric(k))
+        stop("k must be numeric")
+    if (1 != length(k))
+        stop("k must be a single number")
+    c(rep(NA, k), x)[1:length(x)]
+}
+
+#=================================== diffPad ====================================
+#' @title Difference Function with Padding
+#'
+#' @description This function takes the first difference of a given time series data or vector and pads it with the selected lag length while maintaining the attributes of the input data. ts object or vector can be used.
+#'
+#' @param x ts object or numeric vector.
+#'
+#' @details
+#'
+#' @note
+#'
+#' @author \href{mailto:omer.kara.ylsy@@gmail.com}{Ömer Kara}
+#'
+#' @references
+#'
+#' @seealso
+#'
+#' @return A first difference taken ts object or numeric vector with padding.
+#'
+#' @examples
+#' values <- c(1:10)
+#' x <- values
+#' x.ts <- ts(data.frame(V1 = values))
+#' diffPad(x)
+#' diffPad(x.ts)
+#'
+#' @export
+#'
+diffPad <- function(x) {
+    if (!requireNamespace("stats")) stop("Required stats package is missing.")
+    if (is.vector(x)) {
+        output <- c(rep(NA, 1), base::diff(x, lag = 1, diff = 1))
+    }
+    if (stats::is.ts(x)) {
+        output <- rbind(rep(NA, 1), base::diff(x, lag = 1, diff = 1))
+    }
+    attributes(output) <- attributes(x)
+    return(output)
+}
+
+#================================== Diff.Col ===================================
+#' @title Difference of Subset Columns
+#'
+#' @description This function takes the difference of specified columns in a ts object. It should not be used for taking differences of all variables. Only a subset of variables can be used. Other variables are bind to the differenced data at the end.
+#'
+#' @param Data ts object.
+#' @param Diff.ColNames character. Name of the columns to be differenced.
+#' @param Output character. Name of the output.
+#'
+#' @details
+#'
+#' @note
+#'
+#' @author \href{mailto:omer.kara.ylsy@@gmail.com}{Ömer Kara}
+#'
+#' @references
+#'
+#' @seealso
+#'
+#' @return A first difference taken ts object with a user selected name.
+#'
+#' @examples
+#' x <- data.frame(V1 = c(1:10), V2 = c(1:10), V3 = c(1:10))
+#' x.ts <- ts(x)
+#' Diff.Col(Data = x.ts, Diff.ColNames = c("V1", "V3"), Output = "data.diff")
+#' data.diff
+#'
+#' @export
+#'
+Diff.Col <- function(Data, Diff.ColNames, Output) {
+    temp.level <- Data[-1, colnames(Data)[!(colnames(Data) %in% Diff.ColNames)], drop = FALSE]
+    temp.diff <- base::diff(Data[ , colnames(Data)[colnames(Data) %in% Diff.ColNames], drop = FALSE], lag = 1, diff = 1)
+    main <- cbind(temp.level, temp.diff)
+    if ((ncol(Data) - length(Diff.ColNames)) == 1) {
+        colnames(main)[1] <- c(paste0(colnames(main)[1], ".", colnames(Data)[!(colnames(Data) %in% Diff.ColNames)]))
+    }
+    if (length(Diff.ColNames) == 1) {
+        colnames(main)[ncol(main)] <- c(paste0(colnames(main)[ncol(main)], ".", Diff.ColNames))
+    }
+    colnames(main) <- gsub("(temp.level.)|(temp.diff.)", "", colnames(main))
+    main <- main[, colnames(Data)]
+    assign(Output, main, envir = globalenv()) ## Output data will be named as the selected Output.
 }
 
 #========================= Data Conversion Functions ===========================
@@ -344,6 +466,72 @@ NaN.Convert.NA <- function(data, variable) {
         }
     }
     return(temp)
+}
+
+#================================== dataStr ====================================
+#' @title Structure of Datasets
+#'
+#' @description This function lists the data sets (with their structure) in specified R packages.
+#'
+#' @param package character. Package name. Default: NULL
+#' @param df logical. Give information only about all data.frame objects? DEFAULT: FALSE
+#' @param ... Arguments passed from other functions.
+#'
+#' @details
+#'
+#' @note
+#'
+#' @author \href{mailto:omer.kara.ylsy@@gmail.com}{Ömer Kara}
+#'
+#' @references This function is taken from \href{https://github.com/brry/berryFunctions/blob/master/R/dataStr.R}{here}.
+#'
+#' @seealso \code{\link{str}}
+#'
+#' @return Invisible data.frame. Mainly prints via \code{\link{message}} in a for loop.
+#'
+#' @examples
+#' \dontrun{
+## dataStr() ## All loaded packages on search path (package = NULL).
+## dataStr("datasets") ## Only datasets in base R.
+## dataStr("colorspace") ## Works with an installed but unloaded package.
+#' }
+#'
+#' @export
+#'
+dataStr <- function(package = NULL, df = FALSE, ...) {
+    if (!requireNamespace("utils")) stop("Required utils package is missing.")
+    env <- new.env()
+    d <- utils::data(..., package = package, envir = env)$results
+    d <- as.data.frame(d, stringsAsFactors = FALSE)
+    # change things like  "beaver1 (beavers)"  to  "beaver1"
+    itemsplit <- base::strsplit(d$Item, split = " ", fixed = TRUE)
+    d$Object <- sapply(itemsplit, "[", 1)
+    d$Call <- sapply(itemsplit, "[", 2)
+    d$Call <- gsub("(","",gsub(")","",d$Call, fixed = TRUE), fixed = TRUE)
+    d$Call[is.na(d$Call)] <- d$Object[is.na(d$Call)]
+    # sort alphabetically within packages:
+    d <- d[order(d$Package, tolower(d$Object)), ]
+    d$class <- NA
+    if(df) {
+        d$nrow <- NA
+        d$ncol <- NA
+    }
+    for(i in 1:nrow(d)) {
+        x <- d[i,, drop = FALSE]
+        utils::data(list = x$Call, package = x$Package, envir = env)
+        obj <- get(x$Object, envir = env) # getExportedValue(asNamespace(package), x$Object)
+        d[i,"class"] <- toString(class(obj))
+        if(!df)
+        {
+            message(x$Package, "  |  ", x$Object, "  |  ", d[i,"class"], "  |  ", x$Title)
+            message(utils::str(obj))
+        } else if(grepl("data.frame", d[i,"class"]))
+            d[i, c("nrow","ncol")] <- c(nrow(obj),ncol(obj))
+    }
+    if(df) {
+        d <- d[grepl("data.frame", d$class), ]
+    }
+    return(invisible(d))
 }
 
 #==================================== END ======================================

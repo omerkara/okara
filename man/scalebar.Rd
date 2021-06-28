@@ -27,7 +27,7 @@ This function adds a scale to a projected map created with sp::plot.
 
 }
 \note{
-
+For an unprojected map in R, we can use the \code{\link[maps]{map.scale}} function in maps package. This is applicable to a map created not only by the maps package but also by other cartographic packages. However, in R, there is no scale bar applicable to a projected map. So, use it if your shapefile is projected. It should be noted that using scalebar for a decimal degree or the entire world is not logical because the function cannot convert units and retains them in the unconverted form in the current graphic device. Therefore, if necessary, users must project and coordinate the map appropriately prior to the execution of scalebar.
 }
 \examples{
 \dontrun{

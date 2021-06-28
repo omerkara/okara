@@ -35,6 +35,7 @@
 #' @export
 #'
 g_legend <- function(a.gplot) {
+    if (!requireNamespace("ggplot2")) stop("Required ggplot2 package is missing.")
     tmp <- ggplot2::ggplot_gtable(ggplot2::ggplot_build(a.gplot))
     leg <- which(sapply(tmp$grobs, function(x) x$name) == "guide-box")
     legend <- tmp$grobs[[leg]]
@@ -77,9 +78,9 @@ g_legend <- function(a.gplot) {
 #'
 #' @export
 #'
-annotation_compass <- function(label,
-                               position = c("N", "NE", "E", "SE", "S", "SW", "W", "NW"),
-                               padding = grid::unit(c(0.5, 0.5), "line"), ...){
+annotation_compass <- function(label, position = c("N", "NE", "E", "SE", "S", "SW", "W", "NW"), padding = grid::unit(c(0.5, 0.5), "line"), ...) {
+    if (!requireNamespace("ggplot2")) stop("Required ggplot2 package is missing.")
+    if (!requireNamespace("grid")) stop("Required grid package is missing.")
     position <- match.arg(position)
     x <- switch(position,
                 N = 0.5,
@@ -141,10 +142,117 @@ annotation_compass <- function(label,
                  W = 0,
                  NW = -1
     )
-    annotation_custom(grid::textGrob(label,
-                                     x = grid::unit(x,"npc") + f1 * padding[1],
-                                     y = grid::unit(y,"npc") + f2 * padding[2],
-                                     hjust = hjust, vjust = vjust, ...))
+    ggplot2::annotation_custom(grid::textGrob(label,
+                                              x = grid::unit(x,"npc") + f1 * padding[1],
+                                              y = grid::unit(y,"npc") + f2 * padding[2],
+                                              hjust = hjust, vjust = vjust, ...))
 }
+
+#=============================== Human Numbers =================================
+#' @title Human Numbers For ggplot2 Graph Axis
+#'
+#' @description This set of functions formats the numbers in a ggplot2 graph axis so they are easily readable for humans. Use this function in a ggplot2 object for labels where you might use the comma or percent functions from the Scales package. Function checks whether numbers are positive or negative. It allows up to 1 significant figure and sapply used for element-wise application of the humanity function as a vector may include numbers where billions, millions or thousands are appropriate.
+#'
+#' @param x numeric. a numeric vector to format.
+#' @param smbl character. a symbol you'd like to prefix your numbers by e.g. "$".
+#' @param signif numeric. the number of significant places you want the function to return.
+#'
+#' @details All conversions are in character. See below.
+#' \itemize{
+#'   \item human_numbers: Main function with adjustable symbol and significant places.
+#'   \item human_num: For no symbol.
+#'   \item human_per: For percentage symbol.
+#'   \item human_gbp: For Pound symbol.
+#'   \item human_usd: For Dollar symbol.
+#'   \item human_euro: For Euro symbol.
+#'   \item human_tl: For TL symbol.
+#' }
+#'
+#' @note
+#'
+#' @author \href{mailto:omer.kara.ylsy@@gmail.com}{Ömer Kara}
+#'
+#' @references These functions are taken from \href{https://github.com/fdryan/R/blob/master/ggplot2_formatter.r}{here}.
+#'
+#' @seealso
+#'
+#' @return A character vector the same length as the input vector
+#'
+#' @examples
+#' human_numbers(c(1000000 , 1500000, 10000000000))
+#' human_numbers(c(1.200000e+05, -2.154660e+05, 2.387790e+05, 4.343500e+04 ,5.648675e+12), "$")
+#' \dontrun{
+#' ggplot2 + scale_y_continuous(labels = human_num)
+#' ggplot2 + scale_x_continuous(labels = human_gbp)
+#' ggplot2 + scale_x_continuous(labels = human_tl)
+#' }
+#'
+#' @name human.numbers
+NULL
+#> NULL
+#'
+#' @rdname human.numbers
+#' @export
+#'
+human_numbers <- function(x = NULL, smbl = "", signif = 1) {
+    humanity <- function(y) {
+        if (!is.na(y)) {
+            tn <- round(abs(y) / 1e12, signif)
+            b <- round(abs(y) / 1e9, signif)
+            m <- round(abs(y) / 1e6, signif)
+            k <- round(abs(y) / 1e3, signif)
+
+            if (y >= 0) {
+                y_is_positive <- ""
+            } else {
+                y_is_positive <- "-"
+            }
+            if (k < 1) {
+                paste0(y_is_positive, smbl, round(abs(y), signif))
+            } else if (m < 1) {
+                paste0(y_is_positive, smbl, k , "k")
+            } else if (b < 1) {
+                paste0(y_is_positive, smbl, m ,"m")
+            } else if (tn < 1) {
+                paste0(y_is_positive, smbl, b ,"bn")
+            } else {
+                paste0(y_is_positive, smbl, tn, "tn")
+            }
+        } else if (is.na(y) | is.null(y)) {
+            "-"
+        }
+    }
+    sapply(x, humanity)
+}
+#'
+#' @rdname human.numbers
+#' @export
+#'
+human_num <- function(x) {human_numbers(x, smbl = "")}
+#'
+#' @rdname human.numbers
+#' @export
+#'
+human_per <- function(x) {human_numbers(x, smbl = "%")}
+#'
+#' @rdname human.numbers
+#' @export
+#'
+human_gbp <- function(x) {human_numbers(x, smbl = "£")}
+#'
+#' @rdname human.numbers
+#' @export
+#'
+human_usd <- function(x) {human_numbers(x, smbl = "$")}
+#'
+#' @rdname human.numbers
+#' @export
+#'
+human_euro <- function(x) {human_numbers(x, smbl = "€")}
+#'
+#' @rdname human.numbers
+#' @export
+#'
+human_tl <- function(x) {human_numbers(x, smbl = "TL")}
 
 #==================================== END ======================================

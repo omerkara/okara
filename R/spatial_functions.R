@@ -39,6 +39,7 @@
 #' @export
 #'
 northarrow <- function(loc, size, bearing = 0, cols, cex = 1, ...) {
+    if (!requireNamespace("graphics")) stop("Required graphics package is missing.")
     # Checking arguments.
     if (missing(loc))
         stop("loc is missing")
@@ -73,12 +74,6 @@ northarrow <- function(loc, size, bearing = 0, cols, cex = 1, ...) {
 }
 
 #=================================== scalebar ==================================
-
-# Scalebar function to add maps.
-## Taken from Auxiliary Cartographic Functions in R: North Arrow, Scale Bar, and Label with a Leader Arrow, Tanimura, 2007.
-## For an unprojected map in R, we can use the map.scale() function in the maps package. This is applicable to a map created not only by the maps package but also by other cartographic packages. However, in R, there is no scale bar applicable to a projected map. So, use it if your shapefile is projected.
-## It should be noted that using scalebar() for a decimal degree or the entire world is not logical because the function cannot convert units and retains them in the unconverted form in the current graphic device. Therefore, if necessary, users must project and coordinate the map appropriately prior to the execution of scalebar().
-
 #' @title Adding Scale to Projected Maps
 #'
 #' @description This function adds a scale to a projected map created with sp::plot.
@@ -91,7 +86,7 @@ northarrow <- function(loc, size, bearing = 0, cols, cex = 1, ...) {
 #'
 #' @details
 #'
-#' @note
+#' @note For an unprojected map in R, we can use the \code{\link[maps]{map.scale}} function in maps package. This is applicable to a map created not only by the maps package but also by other cartographic packages. However, in R, there is no scale bar applicable to a projected map. So, use it if your shapefile is projected. It should be noted that using scalebar for a decimal degree or the entire world is not logical because the function cannot convert units and retains them in the unconverted form in the current graphic device. Therefore, if necessary, users must project and coordinate the map appropriately prior to the execution of scalebar.
 #'
 #' @author \href{mailto:omer.kara.ylsy@@gmail.com}{Ömer Kara}
 #'
@@ -109,6 +104,7 @@ northarrow <- function(loc, size, bearing = 0, cols, cex = 1, ...) {
 #' @export
 #'
 scalebar <- function(loc, length, unit = "km", division.cex = .8, ...) {
+    if (!requireNamespace("graphics")) stop("Required graphics package is missing.")
     if (missing(loc))
         stop("loc is missing")
     if (missing(length))
@@ -217,6 +213,7 @@ NULL
 #' @export
 #'
 km2d <- function(km, base.latitude = 38.280479) {
+    if (!requireNamespace("fields")) stop("Required fields package is missing.")
     one.degree.dist <- fields::rdist.earth(matrix(c(0, base.latitude), ncol = 2), matrix(c(1, base.latitude), ncol = 2), miles = FALSE) ## 1 degree longitude distance in kilometers.
     out <- km / one.degree.dist
     return(out)
@@ -226,6 +223,7 @@ km2d <- function(km, base.latitude = 38.280479) {
 #' @export
 #'
 ml2d <- function(ml, base.latitude = 38.280479) {
+    if (!requireNamespace("fields")) stop("Required fields package is missing.")
     one.degree.dist <- fields::rdist.earth(matrix(c(0, base.latitude), ncol = 2), matrix(c(1, base.latitude), ncol = 2), miles = TRUE) ## 1 degree longitude distance in miles.
     out <- ml / one.degree.dist
     return(out)
@@ -235,6 +233,7 @@ ml2d <- function(ml, base.latitude = 38.280479) {
 #' @export
 #'
 d2km <- function(d, base.latitude = 38.280479) {
+    if (!requireNamespace("fields")) stop("Required fields package is missing.")
     one.degree.dist <- fields::rdist.earth(matrix(c(0, base.latitude), ncol = 2), matrix(c(1, base.latitude), ncol = 2), miles = FALSE) ## 1 degree longitude distance in kilometers.
     out <- d * one.degree.dist
     return(out)
@@ -244,6 +243,7 @@ d2km <- function(d, base.latitude = 38.280479) {
 #' @export
 #'
 d2ml <- function(d, base.latitude = 38.280479) {
+    if (!requireNamespace("fields")) stop("Required fields package is missing.")
     one.degree.dist <- fields::rdist.earth(matrix(c(0, base.latitude), ncol = 2), matrix(c(1, base.latitude), ncol = 2), miles = TRUE) ## 1 degree longitude distance in miles.
     out <- d * one.degree.dist
     return(out)

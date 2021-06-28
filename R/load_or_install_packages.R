@@ -32,6 +32,8 @@
 #' @export
 #'
 Load.Install <- function(Package.Names, Quiet = FALSE, Update.All = FALSE) {
+    if (!requireNamespace("devtools")) stop("Required devtools package is missing.")
+    if (!requireNamespace("utils")) stop("Required utils package is missing.")
     is_installed <- function(my.pkgs) is.element(my.pkgs, utils::installed.packages()[ ,1])
     github.pkgs <- grep("^.*?/.*?$", Package.Names, value = TRUE)
     github.bare.pkgs <- sub(".*?/", "", github.pkgs)

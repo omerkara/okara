@@ -40,6 +40,7 @@
 #' @export
 #'
 Ask.User.YN.Question <- function(question, GUI = TRUE, add.lines.before = TRUE) {
+    if (!requireNamespace("utils")) stop("Required utils package is missing.")
     choices <- c("yes", "no")
     if (add.lines.before & !GUI) cat("------------------------\n")
     answer <- utils::menu(choices, graphics = GUI, title = question)
@@ -86,8 +87,44 @@ DigitsByRows <- function(df, digits) {
     return(tmp1)
 }
 
+#============================== Decimal.Num.Count ==============================
+#' @title Number of Decimal Places
+#'
+#' @description This function gives the number of decimal places of a number written as character string or numeric object.
+#'
+#' @param x Number in character or in numeric class.
+#'
+#' @details
+#'
+#' @note
+#'
+#' @author \href{mailto:omer.kara.ylsy@@gmail.com}{Ömer Kara}
+#'
+#' @references
+#'
+#' @seealso
+#'
+#' @return An integer
+#'
+#' @examples
+#' Decimal.Num.Count(0.1)
+#' Decimal.Num.Count("0.1")
+#'
+#' Decimal.Num.Count(0.12345)
+#' Decimal.Num.Count("0.12345")
+#'
+#' @export
+#'
+Decimal.Num.Count <- function(x) {
+    if (class(x) == "numeric") {
+        x <- as.character(x)
+    }
+    stopifnot(class(x) == "character")
+    x <- gsub("(.*)(\\.)|([0]*$)", "", x)
+    nchar(x)
+}
+
 #============================== Perm.No.Replace ================================
-#====================== Permutation with No Replacement ========================
 #' @title Permutation without Replacement
 #'
 #' @description This function performs permutation of a given vector without replacement.
@@ -193,7 +230,7 @@ SignPrint <- function(x) {
 #================= round0, round1, round2, round3, and round4 ==================
 #' @title Functions for Rounding with \code{\link[exams]{round2}}
 #'
-#' @description This set of functions simplify and specialize the \code{\link[exams]{round2}} function. Each function rounds the given number to the decimal points specified in the function itself.
+#' @description This set of functions simplify and specialize the \code{\link[exams]{round2}} function in exam package. Each function rounds the given number to the decimal points specified in the function itself.
 #'
 #' @param x numeric. A numeric vector.
 #'
@@ -205,7 +242,7 @@ SignPrint <- function(x) {
 #'
 #' @references For more information see \code{\link[exams]{round2}}.
 #'
-#' @seealso
+#' @seealso \code{\link[exams]{round2}}
 #'
 #' @return Numeric value or vector.
 #'
