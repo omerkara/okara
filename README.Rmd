@@ -26,9 +26,9 @@ R/okara is an [R](https://www.r-project.org/) package with miscellaneous R funct
 
 ## Installation
 To install `okara` package, you need to install and/or load the [`devtools`](https://devtools.r-lib.org//index.html) package. The below code automatically installs and/or loads it for you.
-``` {r devtools.package, message = FALSE}
-if("devtools" %in% rownames(installed.packages()) == FALSE) {suppressWarnings(install.packages("devtools"))}
-suppressWarnings(library("devtools"))
+``` {r devtools.package, message = FALSE, results = "hide"}
+if("devtools" %in% rownames(utils::installed.packages()) == FALSE) {suppressWarnings(suppressMessages(install.packages("devtools")))}
+suppressWarnings(suppressMessages(library("devtools")))
 ```
 
 You can install the `okara` package from [GitHub](https://github.com/omerkara/okara) with the code below.

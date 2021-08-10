@@ -82,7 +82,7 @@ annotation_compass <- function(label, position = c("N", "NE", "E", "SE", "S", "S
     if (!requireNamespace("ggplot2")) stop("Required ggplot2 package is missing.")
     if (!requireNamespace("grid")) stop("Required grid package is missing.")
     position <- match.arg(position)
-    x <- switch(position,
+    x <- switch(EXPR = position,
                 N = 0.5,
                 NE = 1,
                 E = 1,
@@ -92,7 +92,7 @@ annotation_compass <- function(label, position = c("N", "NE", "E", "SE", "S", "S
                 W = 0,
                 NW = 0
     )
-    y <- switch(position,
+    y <- switch(EXPR = position,
                 N = 1,
                 NE = 1,
                 E = 0.5,
@@ -102,7 +102,7 @@ annotation_compass <- function(label, position = c("N", "NE", "E", "SE", "S", "S
                 W = 0.5,
                 NW = 1
     )
-    hjust <- switch(position,
+    hjust <- switch(EXPR = position,
                     N = 0.5,
                     NE = 1,
                     E = 1,
@@ -112,7 +112,7 @@ annotation_compass <- function(label, position = c("N", "NE", "E", "SE", "S", "S
                     W = 0,
                     NW = 0
     )
-    vjust <- switch(position,
+    vjust <- switch(EXPR = position,
                     N = 1,
                     NE = 1,
                     E = 0.5,
@@ -122,7 +122,7 @@ annotation_compass <- function(label, position = c("N", "NE", "E", "SE", "S", "S
                     W = 0.5,
                     NW = 1
     )
-    f1 <- switch(position,
+    f1 <- switch(EXPR = position,
                  N = 0,
                  NE = -1,
                  E = -1,
@@ -132,7 +132,7 @@ annotation_compass <- function(label, position = c("N", "NE", "E", "SE", "S", "S
                  W = 1,
                  NW = 1
     )
-    f2 <- switch(position,
+    f2 <- switch(EXPR = position,
                  N = -1,
                  NE = -1,
                  E = 0,
@@ -143,8 +143,8 @@ annotation_compass <- function(label, position = c("N", "NE", "E", "SE", "S", "S
                  NW = -1
     )
     ggplot2::annotation_custom(grid::textGrob(label,
-                                              x = grid::unit(x,"npc") + f1 * padding[1],
-                                              y = grid::unit(y,"npc") + f2 * padding[2],
+                                              x = grid::unit(x, "npc") + f1 * padding[1],
+                                              y = grid::unit(y, "npc") + f2 * padding[2],
                                               hjust = hjust, vjust = vjust, ...))
 }
 

@@ -11,7 +11,7 @@ citEntry(entry = "Manual",
   url          = "https://github.com/omerkara/okara",
 
   textVersion  =
-  paste("Ömer Kara (2011).",
+  paste("Ömer Kara (2021).",
         "Ömer Kara's Personal Utility Functions.",
         "URL https://github.com/omerkara/okara.")
 )

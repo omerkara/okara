@@ -7,7 +7,7 @@
 
 [![License:
 MIT](https://img.shields.io/badge/license-MIT-blue.svg)](https://cran.r-project.org/web/licenses/MIT)
-[![](https://img.shields.io/badge/devel%20version-1.1.0-blue.svg)](https://github.com/omerkara/okara)
+[![](https://img.shields.io/badge/devel%20version-1.1.1-blue.svg)](https://github.com/omerkara/okara)
 [![star this
 repo](https://githubbadges.com/star.svg?user=omerkara&repo=okara&style=default)](https://github.com/omerkara/okara)
 [![fork this
@@ -33,8 +33,8 @@ To install `okara` package, you need to install and/or load the
 code automatically installs and/or loads it for you.
 
 ``` r
-if("devtools" %in% rownames(installed.packages()) == FALSE) {suppressWarnings(install.packages("devtools"))}
-suppressWarnings(library("devtools"))
+if("devtools" %in% rownames(utils::installed.packages()) == FALSE) {suppressWarnings(suppressMessages(install.packages("devtools")))}
+suppressWarnings(suppressMessages(library("devtools")))
 ```
 
 You can install the `okara` package from
