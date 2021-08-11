@@ -4,8 +4,107 @@
 # Notes:
 #
 ## This script contains some functions which are not directly related to data and estimation stages but might be used in either one starting with the data stage.
-## Some of these functions have specific purposes and should not be used separately.
-## Information for some functions is given in its dedicated space.
+
+#================================ Load.Install =================================
+#' @title Load or Install/Load Packages
+#'
+#' @description This function either loads or installs/loads the specified packages.
+#'
+#' @param Package.Names A vector of strings. The package names to be installed/loaded.
+#' @param Quiet logical. If TRUE, suppress the output.
+#' @param Update.All logical. If TRUE, updates the specified packages.
+#'
+#' @details Packages from GitHub can also be installed/loaded.
+#'
+#' @note
+#'
+#' @author \href{mailto:omer.kara.ylsy@@gmail.com}{Ömer Kara}
+#'
+#' @references
+#'
+#' @seealso
+#'
+#' @return Install and/or loads the specified packages.
+#'
+#' @examples
+#' \dontrun{
+#' Load.Install(Package.Names = "plyr")
+#' Load.Install(Package.Names = c("plyr", "dplyr"))
+#' Load.Install(c("plyr", "dplyr", "tidyr", "stringr", "stringi", "Hmisc"))
+#' Load.Install(c("plyr", "dplyr"), Quiet = TRUE, Update.All = TRUE)
+#'
+#' Load.Install("FinYang/tsdl")
+#' }
+#'
+#' @export
+#'
+Load.Install <- function(Package.Names, Quiet = FALSE, Update.All = FALSE) {
+    if (!requireNamespace("devtools")) stop("Required devtools package is missing.")
+    if (!requireNamespace("utils")) stop("Required utils package is missing.")
+    is_installed <- function(my.pkgs) is.element(my.pkgs, utils::installed.packages()[ ,1])
+    github.pkgs <- grep("^.*?/.*?$", Package.Names, value = TRUE)
+    github.bare.pkgs <- sub(".*?/", "", github.pkgs)
+    cran.pkgs <- Package.Names[!(Package.Names %in% github.pkgs)]
+    all.pkgs <- c(cran.pkgs, github.bare.pkgs)
+    cran.missing <- cran.pkgs[which(!is_installed(cran.pkgs))]
+    github.missing <- github.pkgs[which(!is_installed(github.bare.pkgs))]
+    if (Update.All == TRUE) {
+        cran.missing <- cran.pkgs
+        github.missing <- github.pkgs
+    } else {
+        cran.missing <- cran.pkgs[which(!is_installed(cran.pkgs))]
+        github.missing <- github.pkgs[which(!is_installed(github.bare.pkgs))]
+    }
+    if (length(cran.missing) > 0) {
+        suppressWarnings(utils::install.packages(cran.missing, quiet = Quiet, dependencies = TRUE))
+    }
+    if (length(github.missing) > 0) {
+        suppressWarnings(devtools::install_github(github.missing, quiet = Quiet, dependencies = TRUE))
+    }
+    failed.install <- all.pkgs[which(!is_installed(all.pkgs))]
+    if (length(failed.install) > 0) {
+        warning(paste0("Some packages failed to install: ", paste(failed.install, collapse = ", "), "."))
+    }
+    install.pkgs <- all.pkgs[which(is_installed(all.pkgs) == TRUE)]
+    for (install.pkgs in install.pkgs) {
+        suppressPackageStartupMessages(library(install.pkgs, character.only = TRUE, quietly = Quiet, verbose = FALSE))
+    }
+}
+
+#=============================== Proceed.or.Stop ===============================
+#' @title Tells to Proceed or Stop
+#'
+#' @description This function produces warning message if there is anything wrong with your code.
+#'
+#' @param result A result with a result of TRUE or FALSE.
+#'
+#' @details
+#'
+#' @note
+#'
+#' @author \href{mailto:omer.kara.ylsy@@gmail.com}{Ömer Kara}
+#'
+#' @references
+#'
+#' @seealso
+#'
+#' @return A text message.
+#'
+#' @examples
+#' Proceed.or.Stop(5 < 6)
+#' Proceed.or.Stop(5 < 3)
+#' Proceed.or.Stop(5 == 5)
+#'
+#' @export
+#'
+Proceed.or.Stop <- function(result) {
+    if (result) {
+        message("Yeeaah: Everything is fine. You can proceed safely.\n")
+    }
+    else if (!result) {
+        warning("Oh NO!!!: Something is wrong. Be cautious. Read the comments belong to the code first, then debug the code if necessary.\n")
+    }
+}
 
 #============================ Ask.User.YN.Question =============================
 #' @title Interactive Yes/No Questions
@@ -47,13 +146,12 @@ Ask.User.YN.Question <- function(question, GUI = TRUE, add.lines.before = TRUE) 
     ifelse(answer == 1L, TRUE, FALSE) ## Returns TRUE or FALSE.
 }
 
-#================================ DigitsByRows =================================
-#' @title Significant Digits By Row
+#=============================== Impute.NA.Mean ================================
+#' @title Impute Missing Values with Mean
 #'
-#' @description This function prints significant digits by row in a data frame.
+#' @description This function fills NA values with mean value.
 #'
-#' @param df A data frame.
-#' @param digits The requested digits in order of rows.
+#' @param x numeric. a numeric vector.
 #'
 #' @details
 #'
@@ -65,26 +163,15 @@ Ask.User.YN.Question <- function(question, GUI = TRUE, add.lines.before = TRUE) 
 #'
 #' @seealso
 #'
-#' @return A data frame.
+#' @return A numeric vector.
 #'
 #' @examples
-#' \dontrun{
-#' DigitsByRows(df, digits = c(0, 2)) ## Do not run.
-#' }
+#' Impute.NA.Mean(c(1:5, rep(NA, 1)))
 #'
 #' @export
 #'
-DigitsByRows <- function(df, digits) {
-    tmp0 <- data.frame(t(df))
-    tmp1 <- mapply(
-        function(df0, digits0) {
-            base::formatC(df0, format = "f", digits = digits0)
-        },
-        df0 = tmp0, digits0 = digits
-    )
-    tmp1 <- data.frame(t(tmp1))
-    names(tmp1) <- names(df)
-    return(tmp1)
+Impute.NA.Mean <- function(x) {
+    replace(x, is.na(x), mean(x, na.rm = TRUE))
 }
 
 #============================== Decimal.Num.Count ==============================
@@ -104,7 +191,7 @@ DigitsByRows <- function(df, digits) {
 #'
 #' @seealso
 #'
-#' @return An integer
+#' @return An integer.
 #'
 #' @examples
 #' Decimal.Num.Count(0.1)
@@ -122,6 +209,155 @@ Decimal.Num.Count <- function(x) {
     stopifnot(class(x) == "character")
     x <- gsub("(.*)(\\.)|([0]*$)", "", x)
     nchar(x)
+}
+
+#================================= logPercent ==================================
+#' @title Percentage Change for Log Variables
+#'
+#' @description This function makes sure that the level variable of interest increases/decreases, 10% i.e., while you are dealing with the log form.
+#'
+#' @param Variable numeric. A numeric value or vector in logarithmic form.
+#' @param Percent numeric. A numeric value representing percentage increase in the level form.
+#'
+#' @details
+#'
+#' @note
+#'
+#' @author \href{mailto:omer.kara.ylsy@@gmail.com}{Ömer Kara}
+#'
+#' @references
+#'
+#' @seealso
+#'
+#' @return A value in the logarithmic form which makes sure that the level form value has increased by the specified percentage.
+#'
+#' @examples
+#' x <- 100
+#' percent <- 10
+#' log(x)
+#' logPercent(log(x), percent)
+#' exp(logPercent(log(x), percent))
+#'
+#' @export
+#'
+logPercent <- function(Variable, Percent) {
+    Variable.New <- Variable + log(1 + Percent/100)
+    return(Variable.New)
+}
+
+#=================================== lagPad ====================================
+#' @title Lag Function with Padding
+#'
+#' @description This function pads the lag taken numeric vector with NA values.
+#'
+#' @param x numeric. A numeric vector.
+#' @param k numeric. A numeric lag value.
+#'
+#' @details
+#'
+#' @note
+#'
+#' @author \href{mailto:omer.kara.ylsy@@gmail.com}{Ömer Kara}
+#'
+#' @references
+#'
+#' @seealso
+#'
+#' @return A lag taken numeric vector with padding.
+#'
+#' @examples
+#' x <- 1:10
+#' x.t1 <- lagPad(x, 2)
+#' cbind(x, x.t1)
+#'
+#' @export
+#'
+lagPad <- function(x, k) {
+    if (!is.vector(x))
+        stop("x must be a vector")
+    if (!is.numeric(x))
+        stop("x must be numeric")
+    if (!is.numeric(k))
+        stop("k must be numeric")
+    if (1 != length(k))
+        stop("k must be a single number")
+    c(rep(NA, k), x)[1:length(x)]
+}
+
+#=================================== diffPad ====================================
+#' @title Difference Function with Padding
+#'
+#' @description This function takes the first difference of a given time series data or vector and pads it with the selected lag length while maintaining the attributes of the input data. ts object or vector can be used.
+#'
+#' @param x ts object or numeric vector.
+#'
+#' @details
+#'
+#' @note
+#'
+#' @author \href{mailto:omer.kara.ylsy@@gmail.com}{Ömer Kara}
+#'
+#' @references
+#'
+#' @seealso
+#'
+#' @return A first difference taken ts object or numeric vector with padding.
+#'
+#' @examples
+#' values <- c(1:10)
+#' x <- values
+#' x.ts <- ts(data.frame(V1 = values))
+#' diffPad(x)
+#' diffPad(x.ts)
+#'
+#' @export
+#'
+diffPad <- function(x) {
+    if (!requireNamespace("stats")) stop("Required stats package is missing.")
+    if (is.vector(x)) {
+        output <- c(rep(NA, 1), base::diff(x, lag = 1, diff = 1))
+    }
+    if (stats::is.ts(x)) {
+        output <- rbind(rep(NA, 1), base::diff(x, lag = 1, diff = 1))
+    }
+    attributes(output) <- attributes(x)
+    return(output)
+}
+
+#================================== sampled ====================================
+#' @title Bug free Redefinition of Sample Function
+#'
+#' @description If only one value is given in \code{\link[base]{sample}} function, it chooses a value between 1 and the number you specified. The redefined sample function solves this problem.
+#'
+#' @param x either a vector of one or more elements from which to choose, or a positive integer.
+#' @param size a non-negative integer giving the number of items to choose.
+#' @param replace should sampling be with replacement?
+#' @param prob a vector of probability weights for obtaining the elements of the vector being sampled.
+#'
+#' @details
+#'
+#' @note
+#'
+#' @author \href{mailto:omer.kara.ylsy@@gmail.com}{Ömer Kara}
+#'
+#' @references For more information see \code{\link[base]{sample}}.
+#'
+#' @seealso
+#'
+#' @return For sample a vector of length size with elements drawn from either x or from the integers 1:x.
+#'
+#' @examples
+#' sampled(2, 1)
+#' sampled(1:5, 2)
+#'
+#' @export
+#'
+sampled <- function(x, size, replace = FALSE, prob = NULL) {
+    if (length(x) == 1) {
+        return(x)
+    } else {
+        sample(x, size = size, replace = replace, prob = prob)
+    }
 }
 
 #============================== Perm.No.Replace ================================
@@ -159,42 +395,6 @@ Perm.No.Replace <- function(v) {
             X <- rbind(X, cbind(v[i], Perm.No.Replace(v[-i])))
         }
         X
-    }
-}
-
-#================================== sampled ====================================
-#' @title Bug free Redefinition of Sample Function
-#'
-#' @description If only one value is given in \code{\link[base]{sample}} function, it chooses a value between 1 and the number you specified. The redefined sample function solves this problem.
-#'
-#' @param x either a vector of one or more elements from which to choose, or a positive integer.
-#' @param size a non-negative integer giving the number of items to choose.
-#' @param replace should sampling be with replacement?
-#' @param prob a vector of probability weights for obtaining the elements of the vector being sampled.
-#'
-#' @details
-#'
-#' @note
-#'
-#' @author \href{mailto:omer.kara.ylsy@@gmail.com}{Ömer Kara}
-#'
-#' @references For more information see \code{\link[base]{sample}}.
-#'
-#' @seealso
-#'
-#' @return For sample a vector of length size with elements drawn from either x or from the integers 1:x.
-#'
-#' @examples
-#' sampled(2, 1)
-#' sampled(1:5, 2)
-#'
-#' @export
-#'
-sampled <- function(x, size, replace = FALSE, prob = NULL) {
-    if (length(x) == 1) {
-        return(x)
-    } else {
-        sample(x, size = size, replace = replace, prob = prob)
     }
 }
 
@@ -356,4 +556,5 @@ trunc3 <- function(x) {
 trunc4 <- function(x) {
     trunc(x * 10000)/10000
 }
+
 #==================================== END ======================================

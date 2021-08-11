@@ -5,7 +5,6 @@
 #
 ## This script contains some functions which are directly related to data stage but also might be use in estimation stage.
 ## Some of these functions have specific purposes and should not be used separately.
-## Information for some functions is given in its dedicated space.
 
 #================================== Head.Tail ==================================
 #' @title Head and Tail of a Data Frame
@@ -40,34 +39,6 @@ Head.Tail <- function(x, Select) {
     if (Select %% 1 != 0)
         stop("Invalid Select. Please choose a whole number as Select.\n")
     rbind(utils::head(x, Select), utils::tail(x, Select))
-}
-
-#=============================== Impute.NA.Mean ================================
-#' @title Impute Missing Values with Mean
-#'
-#' @description This function fills NA values with mean value.
-#'
-#' @param x numeric. a numeric vector.
-#'
-#' @details
-#'
-#' @note
-#'
-#' @author \href{mailto:omer.kara.ylsy@@gmail.com}{Ömer Kara}
-#'
-#' @references
-#'
-#' @seealso
-#'
-#' @return A numeric vector.
-#'
-#' @examples
-#' Impute.NA.Mean(c(1:5, rep(NA, 1)))
-#'
-#' @export
-#'
-Impute.NA.Mean <- function(x) {
-    replace(x, is.na(x), mean(x, na.rm = TRUE))
 }
 
 #========================= Cubic.Spline.Interpolation ==========================
@@ -151,47 +122,13 @@ Cubic.Spline.Interpolation <- function(Data, Column.Names) {
     assign("data.interpolate", Data, envir = globalenv()) ## Output data will be named as "data.interpolate".
 }
 
-#================================= logPercent ==================================
-#' @title Percentage Change for Log Variables
+#================================ DigitsByRows =================================
+#' @title Significant Digits By Row
 #'
-#' @description This function makes sure that the level variable of interest increases/decreases, 10% i.e., while you are dealing with the log form.
+#' @description This function prints significant digits by row in a data frame.
 #'
-#' @param Variable numeric. A numeric value or vector in logarithmic form.
-#' @param Percent numeric. A numeric value representing percentage increase in the level form.
-#'
-#' @details
-#'
-#' @note
-#'
-#' @author \href{mailto:omer.kara.ylsy@@gmail.com}{Ömer Kara}
-#'
-#' @references
-#'
-#' @seealso
-#'
-#' @return A value in the logarithmic form which makes sure that the level form value has increased by the specified percentage.
-#'
-#' @examples
-#' x <- 100
-#' percent <- 10
-#' log(x)
-#' logPercent(log(x), percent)
-#' exp(logPercent(log(x), percent))
-#'
-#' @export
-#'
-logPercent <- function(Variable, Percent) {
-    Variable.New <- Variable + log(1 + Percent/100)
-    return(Variable.New)
-}
-
-#=================================== lagPad ====================================
-#' @title Lag Function with Padding
-#'
-#' @description This function pads the lag taken numeric vector with NA values.
-#'
-#' @param x numeric. A numeric vector.
-#' @param k numeric. A numeric lag value.
+#' @param df A data frame.
+#' @param digits The requested digits in order of rows.
 #'
 #' @details
 #'
@@ -203,65 +140,26 @@ logPercent <- function(Variable, Percent) {
 #'
 #' @seealso
 #'
-#' @return A lag taken numeric vector with padding.
+#' @return A data frame.
 #'
 #' @examples
-#' x <- 1:10
-#' x.t1 <- lagPad(x, 2)
-#' cbind(x, x.t1)
+#' \dontrun{
+#' DigitsByRows(df, digits = c(0, 2)) ## Do not run.
+#' }
 #'
 #' @export
 #'
-lagPad <- function(x, k) {
-    if (!is.vector(x))
-        stop("x must be a vector")
-    if (!is.numeric(x))
-        stop("x must be numeric")
-    if (!is.numeric(k))
-        stop("k must be numeric")
-    if (1 != length(k))
-        stop("k must be a single number")
-    c(rep(NA, k), x)[1:length(x)]
-}
-
-#=================================== diffPad ====================================
-#' @title Difference Function with Padding
-#'
-#' @description This function takes the first difference of a given time series data or vector and pads it with the selected lag length while maintaining the attributes of the input data. ts object or vector can be used.
-#'
-#' @param x ts object or numeric vector.
-#'
-#' @details
-#'
-#' @note
-#'
-#' @author \href{mailto:omer.kara.ylsy@@gmail.com}{Ömer Kara}
-#'
-#' @references
-#'
-#' @seealso
-#'
-#' @return A first difference taken ts object or numeric vector with padding.
-#'
-#' @examples
-#' values <- c(1:10)
-#' x <- values
-#' x.ts <- ts(data.frame(V1 = values))
-#' diffPad(x)
-#' diffPad(x.ts)
-#'
-#' @export
-#'
-diffPad <- function(x) {
-    if (!requireNamespace("stats")) stop("Required stats package is missing.")
-    if (is.vector(x)) {
-        output <- c(rep(NA, 1), base::diff(x, lag = 1, diff = 1))
-    }
-    if (stats::is.ts(x)) {
-        output <- rbind(rep(NA, 1), base::diff(x, lag = 1, diff = 1))
-    }
-    attributes(output) <- attributes(x)
-    return(output)
+DigitsByRows <- function(df, digits) {
+    tmp0 <- data.frame(t(df))
+    tmp1 <- mapply(
+        function(df0, digits0) {
+            base::formatC(df0, format = "f", digits = digits0)
+        },
+        df0 = tmp0, digits0 = digits
+    )
+    tmp1 <- data.frame(t(tmp1))
+    names(tmp1) <- names(df)
+    return(tmp1)
 }
 
 #================================== Diff.Col ===================================

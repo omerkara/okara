@@ -5,7 +5,6 @@
 #
 ## This script contains some functions about graphics which are directly related to estimation stage.
 ## Some of these functions have specific purposes and should not be used separately.
-## Information for some functions is given in its dedicated space.
 
 #=================================== g_legend ==================================
 #' @title Extracting Legend of a ggplot2 Object
@@ -181,6 +180,7 @@ annotation_compass <- function(label, position = c("N", "NE", "E", "SE", "S", "S
 #' @examples
 #' human_numbers(c(1000000 , 1500000, 10000000000))
 #' human_numbers(c(1.200000e+05, -2.154660e+05, 2.387790e+05, 4.343500e+04 ,5.648675e+12), "$")
+#'
 #' \dontrun{
 #' ggplot2 + scale_y_continuous(labels = human_num)
 #' ggplot2 + scale_x_continuous(labels = human_gbp)

@@ -32,7 +32,7 @@ suppressWarnings(suppressMessages(library("devtools")))
 ```
 
 You can install the `okara` package from [GitHub](https://github.com/omerkara/okara) with the code below.
-``` {r install.package.main, message = FALSE, results = "hide"}
+``` {r install.package.main, eval = FALSE, message = FALSE, results = "hide"}
 devtools::install_github("omerkara/okara")
 ```
 
@@ -44,6 +44,9 @@ devtools::install_github("omerkara/okara", build_vignettes = TRUE) ## Builds the
 
 ## Loading
 You can load the `okara` package with the code below.
+``` {r install.package, include = FALSE, message = FALSE, results = "hide"}
+if("okara" %in% rownames(utils::installed.packages()) == FALSE) {suppressWarnings(suppressMessages(devtools::install_github("omerkara/okara", force = FALSE)))}
+```
 ``` {r load.package}
 library("okara")
 ```

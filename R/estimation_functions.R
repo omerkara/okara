@@ -5,7 +5,6 @@
 #
 ## This script contains some functions which are directly related to estimation stage.
 ## Some of these functions have specific purposes and should not be used separately.
-## Information for some functions is given in its dedicated space.
 
 #================================= SummaryR.lm =================================
 #' @title Summary of OLS with Robust Std Errors

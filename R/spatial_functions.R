@@ -5,7 +5,6 @@
 #
 ## This script contains some functions about spatial analyses which are directly related to estimation stage.
 ## Some of these functions have specific purposes and should not be used separately.
-## Information for some functions is given in its dedicated space.
 
 #================================== northarrow =================================
 #' @title Adding North Arrow to Maps

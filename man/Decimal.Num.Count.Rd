@@ -10,7 +10,7 @@ Decimal.Num.Count(x)
 \item{x}{Number in character or in numeric class.}
 }
 \value{
-An integer
+An integer.
 }
 \description{
 This function gives the number of decimal places of a number written as character string or numeric object.
