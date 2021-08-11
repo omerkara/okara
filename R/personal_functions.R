@@ -119,7 +119,7 @@ Time.Keeping <- function(Hours.Punch, First.Date = NULL, Last.Date = NULL, Exclu
     ## Total.Weeks data.
     Total.Weeks <- Total.Days
     for (i in 1:length(sort(unique(Total.Weeks$Week)))) {
-        Total.Weeks[c(which(Total.Weeks$Week == sort(unique(Total.Weeks$Week))[i])), "Start.End"] <- paste0(min(date(Total.Weeks[c(which(Total.Weeks$Week == sort(unique(Total.Weeks$Week))[i])), ]$Date), na.rm = TRUE), " | ", max(date(Total.Weeks[c(which(Total.Weeks$Week == sort(unique(Total.Weeks$Week))[i])), ]$Date), na.rm = TRUE))
+        Total.Weeks[c(which(Total.Weeks$Week == sort(unique(Total.Weeks$Week))[i])), "Start.End"] <- paste0(min(lubridate::date(x = Total.Weeks[c(which(Total.Weeks$Week == sort(unique(Total.Weeks$Week))[i])), ]$Date), na.rm = TRUE), " | ", max(lubridate::date(x = Total.Weeks[c(which(Total.Weeks$Week == sort(unique(Total.Weeks$Week))[i])), ]$Date), na.rm = TRUE))
     }
 
     Total.Weeks <- Total.Weeks[, c("Start.End", "Week", "Second", "Minute", "Hour")]
