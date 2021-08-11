@@ -68,7 +68,7 @@ Time.Keeping <- function(Hours.Punch, First.Date = NULL, Last.Date = NULL, Exclu
     } else {
         last.date <- Last.Date
     }
-    days <- seq(date(first.date), date(last.date), by = "day")
+    days <- seq(lubridate::date(first.date), lubridate::date(last.date), by = "day")
     if (Exclude.Weekends == TRUE) {
         Total.Days <- data.frame(Date = days[weekdays(days, abbreviate = FALSE) != "Saturday" & weekdays(days, abbreviate = FALSE) != "Sunday"])
     } else {
