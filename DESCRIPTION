@@ -30,7 +30,8 @@ Imports:
     stringr,
     tidyr,
     magrittr,
-    lubridate
+    lubridate,
+    usethis
 Suggests: 
     rmarkdown,
     knitr,
