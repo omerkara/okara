@@ -1,6 +1,6 @@
 Package: okara
 Title: Ömer Kara's Personal Utility Functions
-Version: 1.1.2
+Version: 1.1.3
 Authors@R: 
     person(given = "Ömer",
            family = "Kara",

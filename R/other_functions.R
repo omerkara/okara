@@ -71,6 +71,44 @@ Load.Install <- function(Package.Names, Quiet = FALSE, Update.All = FALSE) {
     }
 }
 
+#================================ Load.Packages ================================
+#' @title Load Packages
+#'
+#' @description This function either loads the specified packages.
+#'
+#' @param Package.Names A vector of strings. The package names to be loaded.
+#' @param Quiet logical. If TRUE, suppress the output.
+#'
+#' @details Packages from GitHub can also be loaded.
+#'
+#' @note
+#'
+#' @author \href{mailto:omer.kara.ylsy@@gmail.com}{Ömer Kara}
+#'
+#' @references
+#'
+#' @seealso
+#'
+#' @return Loads the specified packages.
+#'
+#' @examples
+#' \dontrun{
+#' Load.Packages(Package.Names = "plyr")
+#' Load.Packages(Package.Names = c("plyr", "dplyr"))
+#' Load.Packages(c("plyr", "dplyr", "tidyr", "stringr", "stringi", "Hmisc"))
+#' Load.Packages(c("plyr", "dplyr"), Quiet = TRUE)
+#'
+#' Load.Packages("tsdl") ## Github package.
+#' }
+#'
+#' @export
+#'
+Load.Packages <- function(Package.Names, Quiet = FALSE) {
+    for (Package.Names in Package.Names) {
+        suppressPackageStartupMessages(library(Package.Names, character.only = TRUE, quietly = Quiet, verbose = FALSE))
+    }
+}
+
 #=============================== Proceed.or.Stop ===============================
 #' @title Tells to Proceed or Stop
 #'
