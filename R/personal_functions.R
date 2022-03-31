@@ -167,4 +167,71 @@ Time.Keeping <- function(Hours.Punch, First.Date = NULL, Last.Date = NULL, Exclu
     setwd(WD.temp)
 }
 
+#============================= Min.Sell.Buy.Price ==============================
+#' @title Minimum Sell or Buy Prices
+#'
+#' @description This function gives you the minimum sell price after you buy or the minimum buy price after you sell with a selected fee percentage which makes you break even after the fee.
+#'
+#' @param Price numeric. Buy or sell price.
+#' @param Fee.Per numeric. Fee percentage.
+#'
+#' @details This is a personal function of the package author. So, it won't make sense to others.
+#'
+#' @note
+#'
+#' @author \href{mailto:omer.kara.ylsy@@gmail.com}{Ömer Kara}
+#'
+#' @references
+#'
+#' @seealso
+#'
+#' @return Three data.frames called "Time.Detail", "Total.Days", and "Total.Weeks".
+#'
+#' @examples
+#' Min.Sell.Buy.Price(Price = 60, Fee.Per = 0.1)
+#' Min.Sell.Buy.Price(Price = 60)
+#' Min.Sell.Buy.Price(Price = 60, Fee.Per = 0.08)
+#'
+#' @export
+#'
+Min.Sell.Buy.Price <- function(Price, Fee.Per = 0.1) {
+    # Saves the current working directory for further use.
+    WD.temp <- getwd()
+
+    # Checks Price argument.
+    if (length(Price) != 1)
+        stop("Invalid Price. Please choose only one Price.")
+    if (!is.numeric(Price))
+        stop("Invalid Price. Please choose Price as numeric.")
+    if (!(Price > 0))
+        stop("Invalid Price. Please choose a positive Price.")
+
+    # Checks Fee.Per argument.
+    if (length(Fee.Per) != 1)
+        stop("Invalid Fee.Per. Please choose only one Fee.Per.")
+    if (!is.numeric(Fee.Per))
+        stop("Invalid Fee.Per. Please choose Fee.Per as numeric.")
+    if (!(Fee.Per >= 0 & Fee.Per <= 100))
+        stop("Invalid Price. Please choose a Fee.Per between 0 and 100 (including boundaries).")
+
+    # Sell or Buy price.
+    price <- Price
+
+    # Fee percentage.
+    fee.per <- Fee.Per/100
+
+    # Minimum Sell price after you have bought.
+    min.sell.price <- (price * (1 + fee.per)) / (1 - fee.per)
+
+    # Minimum buy price after you have sold.
+    min.buy.price <- (price * (1 - fee.per)) / (1 + fee.per)
+
+    # Results
+    message(paste0("Min. SELL Price: ", round(min.sell.price, 0)))
+    message(paste0("Min. BUY Price: ", round(min.buy.price, 0)))
+
+    # Revert the working directory to initial path.
+    setwd(WD.temp)
+}
+
 #==================================== END ======================================
