@@ -21,10 +21,10 @@ Time.Keeping(
 
 \item{Exclude.Weekends}{logical. If TRUE, the weekends will be excluded from the data.}
 
-\item{Target.Hours}{numeric. Default if NULL. If a numeric value is given, the remaining hours for the current week is messaged.}
+\item{Target.Hours}{numeric. Default is NULL. If a numeric value is given, the remaining hours for the current week is messaged.}
 }
 \value{
-Three data.frames called "Time.Detail", "Total.Days", and "Total.Weeks".
+Three data.frames called "Time.Detail", "Total.Days", "Total.Weeks", and "total.hours".
 }
 \description{
 This function keeps the punched hours for hourly jobs.

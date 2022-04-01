@@ -9,7 +9,7 @@ Min.Sell.Buy.Price(Price, Fee.Per = 0.1)
 \arguments{
 \item{Price}{numeric. Buy or sell price.}
 
-\item{Fee.Per}{numeric. Fee percentage.}
+\item{Fee.Per}{numeric. Fee percentage. Default is 0.1.}
 }
 \value{
 Three data.frames called "Time.Detail", "Total.Days", and "Total.Weeks".

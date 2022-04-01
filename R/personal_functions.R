@@ -14,7 +14,7 @@
 #' @param First.Date character. Default if NULL. The first date of time keeping. If NULL, then it will be generated from the data.
 #' @param Last.Date character. Default if NULL. The last date of time keeping. If NULL, then it will be generated from the data.
 #' @param Exclude.Weekends logical. If TRUE, the weekends will be excluded from the data.
-#' @param Target.Hours numeric. Default if NULL. If a numeric value is given, the remaining hours for the current week is messaged.
+#' @param Target.Hours numeric. Default is NULL. If a numeric value is given, the remaining hours for the current week is messaged.
 #'
 #' @details This is a personal function of the package author. So, it won't make sense to others.
 #'
@@ -26,7 +26,7 @@
 #'
 #' @seealso
 #'
-#' @return Three data.frames called "Time.Detail", "Total.Days", and "Total.Weeks".
+#' @return Three data.frames called "Time.Detail", "Total.Days", "Total.Weeks", and "total.hours".
 #'
 #' @examples
 #' \dontrun{
@@ -155,8 +155,11 @@ Time.Keeping <- function(Hours.Punch, First.Date = NULL, Last.Date = NULL, Exclu
     Total.Days <- rbind(Total.Days, c("Total", "", round(sum(Total.Days$Second, na.rm = TRUE), 2), round(sum(Total.Days$Minute, na.rm = TRUE), 2), round(sum(Total.Days$Hour, na.rm = TRUE), 2)))
     Total.Weeks <- rbind(Total.Weeks, c("Total", "", round(sum(Total.Weeks$Second, na.rm = TRUE), 2), round(sum(Total.Weeks$Minute, na.rm = TRUE), 2), round(sum(Total.Weeks$Hour, na.rm = TRUE), 2)))
 
+    # Total hours is returned.
+    total.hours <- Total.Days$Hour[nrow(Total.Days)]
+
     # The message for your total hours.
-    message(paste0("Total: ", Total.Days$Hour[nrow(Total.Days)]), " hours")
+    message(paste0("Total: ", total.hours, " hours"))
 
     # Output data will be named as "Time.Detail", "Total.Days", and "Total.Weeks".
     assign("Time.Detail", data, envir = globalenv()) ## The details of your time keeping.
@@ -165,6 +168,9 @@ Time.Keeping <- function(Hours.Punch, First.Date = NULL, Last.Date = NULL, Exclu
 
     # Revert the working directory to initial path.
     setwd(WD.temp)
+
+    # Return total.hours.
+    return(total.hours)
 }
 
 #============================= Min.Sell.Buy.Price ==============================
@@ -173,7 +179,7 @@ Time.Keeping <- function(Hours.Punch, First.Date = NULL, Last.Date = NULL, Exclu
 #' @description This function gives you the minimum sell price after you buy or the minimum buy price after you sell with a selected fee percentage which makes you break even after the fee.
 #'
 #' @param Price numeric. Buy or sell price.
-#' @param Fee.Per numeric. Fee percentage.
+#' @param Fee.Per numeric. Fee percentage. Default is 0.1.
 #'
 #' @details This is a personal function of the package author. So, it won't make sense to others.
 #'
