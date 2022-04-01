@@ -156,7 +156,7 @@ Time.Keeping <- function(Hours.Punch, First.Date = NULL, Last.Date = NULL, Exclu
     Total.Weeks <- rbind(Total.Weeks, c("Total", "", round(sum(Total.Weeks$Second, na.rm = TRUE), 2), round(sum(Total.Weeks$Minute, na.rm = TRUE), 2), round(sum(Total.Weeks$Hour, na.rm = TRUE), 2)))
 
     # Total hours is returned.
-    total.hours <- Total.Days$Hour[nrow(Total.Days)]
+    total.hours <- as.numeric(Total.Days$Hour[nrow(Total.Days)])
 
     # The message for your total hours.
     message(paste0("Total: ", total.hours, " hours"))
