@@ -180,6 +180,7 @@ Time.Keeping <- function(Hours.Punch, First.Date = NULL, Last.Date = NULL, Exclu
 #'
 #' @param Price numeric. Buy or sell price.
 #' @param Fee.Per numeric. Fee percentage. Default is 0.1.
+#' @param Round numeric. Decimal rounding. Default is 2.
 #'
 #' @details This is a personal function of the package author. So, it won't make sense to others.
 #'
@@ -191,16 +192,16 @@ Time.Keeping <- function(Hours.Punch, First.Date = NULL, Last.Date = NULL, Exclu
 #'
 #' @seealso
 #'
-#' @return Three data.frames called "Time.Detail", "Total.Days", and "Total.Weeks".
+#' @return Two messages: one for BUY Price, one for SELL Price.
 #'
 #' @examples
-#' Min.Sell.Buy.Price(Price = 60, Fee.Per = 0.1)
 #' Min.Sell.Buy.Price(Price = 60)
 #' Min.Sell.Buy.Price(Price = 60, Fee.Per = 0.08)
+#' Min.Sell.Buy.Price(Price = 60, Fee.Per = 0.1, Round = 3)
 #'
 #' @export
 #'
-Min.Sell.Buy.Price <- function(Price, Fee.Per = 0.1) {
+Min.Sell.Buy.Price <- function(Price, Fee.Per = 0.1, Round = 2) {
     # Saves the current working directory for further use.
     WD.temp <- getwd()
 
@@ -218,7 +219,15 @@ Min.Sell.Buy.Price <- function(Price, Fee.Per = 0.1) {
     if (!is.numeric(Fee.Per))
         stop("Invalid Fee.Per. Please choose Fee.Per as numeric.")
     if (!(Fee.Per >= 0 & Fee.Per <= 100))
-        stop("Invalid Price. Please choose a Fee.Per between 0 and 100 (including boundaries).")
+        stop("Invalid Fee.Per. Please choose a Fee.Per between 0 and 100 (including boundaries).")
+
+    # Checks Round argument.
+    if (length(Round) != 1)
+        stop("Invalid Round. Please choose only one Round.")
+    if (!is.numeric(Round))
+        stop("Invalid Round. Please choose Round as numeric.")
+    if (!(Round >= 0))
+        stop("Invalid Round. Please choose a Round equal or larger then 0.")
 
     # Sell or Buy price.
     price <- Price
@@ -233,8 +242,103 @@ Min.Sell.Buy.Price <- function(Price, Fee.Per = 0.1) {
     min.buy.price <- (price * (1 - fee.per)) / (1 + fee.per)
 
     # Results
-    message(paste0("Min. SELL Price: ", round(min.sell.price, 0)))
-    message(paste0("Min. BUY Price: ", round(min.buy.price, 0)))
+    message(paste0("Min. SELL Price: ", round(min.sell.price, Round)))
+    message(paste0("Min. BUY Price: ", round(min.buy.price, Round)))
+
+    # Revert the working directory to initial path.
+    setwd(WD.temp)
+}
+
+#========================== Min.Sell.Buy.Price.Gain ============================
+#' @title Minimum Sell or Buy Prices
+#'
+#' @description This function gives you the minimum sell price after you buy or the minimum buy price after you sell with a selected fee percentage and desired gain percentage.
+#'
+#' @param Price numeric. Buy or sell price.
+#' @param Gain.Per numeric. Gain percentage. Default is 1.
+#' @param Fee.Per numeric. Fee percentage. Default is 0.1.
+#' @param Round numeric. Decimal rounding. Default is 2.
+#'
+#' @details This is a personal function of the package author. So, it won't make sense to others.
+#'
+#' @note
+#'
+#' @author \href{mailto:omer.kara.ylsy@@gmail.com}{Ömer Kara}
+#'
+#' @references
+#'
+#' @seealso
+#'
+#' @return Two messages: one for BUY Price, one for SELL Price.
+#'
+#' @examples
+#' Min.Sell.Buy.Price.Gain(Price = 100)
+#' Min.Sell.Buy.Price.Gain(Price = 100, Gain.Per = 1.5)
+#' Min.Sell.Buy.Price.Gain(Price = 100, Fee.Per = 0.01)
+#' Min.Sell.Buy.Price.Gain(Price = 100, Gain.Per = 2.5, Fee.Per = 0.05, Round = 4)
+#'
+#' @export
+#'
+Min.Sell.Buy.Price.Gain <- function(Price, Gain.Per = 1, Fee.Per = 0.1, Round = 2) {
+    # Saves the current working directory for further use.
+    WD.temp <- getwd()
+
+    # Checks Price argument.
+    if (length(Price) != 1)
+        stop("Invalid Price. Please choose only one Price.")
+    if (!is.numeric(Price))
+        stop("Invalid Price. Please choose Price as numeric.")
+    if (!(Price > 0))
+        stop("Invalid Price. Please choose a positive Price.")
+
+    # Checks Gain.Per argument.
+    if (length(Gain.Per) != 1)
+        stop("Invalid Gain.Per. Please choose only one Gain.Per.")
+    if (!is.numeric(Gain.Per))
+        stop("Invalid Gain.Per. Please choose Gain.Per as numeric.")
+    if (!(Gain.Per >= 0 & Gain.Per <= 100))
+        stop("Invalid Gain.Per. Please choose a Gain.Per between 0 and 100 (including boundaries).")
+
+    # Checks Fee.Per argument.
+    if (length(Fee.Per) != 1)
+        stop("Invalid Fee.Per. Please choose only one Fee.Per.")
+    if (!is.numeric(Fee.Per))
+        stop("Invalid Fee.Per. Please choose Fee.Per as numeric.")
+    if (!(Fee.Per >= 0 & Fee.Per <= 100))
+        stop("Invalid Fee.Per. Please choose a Fee.Per between 0 and 100 (including boundaries).")
+
+    # Checks Round argument.
+    if (length(Round) != 1)
+        stop("Invalid Round. Please choose only one Round.")
+    if (!is.numeric(Round))
+        stop("Invalid Round. Please choose Round as numeric.")
+    if (!(Round >= 0))
+        stop("Invalid Round. Please choose a Round equal or larger then 0.")
+
+    # Sell or Buy price.
+    price <- Price
+
+    # Gain percentage.
+    gain.per <- Gain.Per/100
+
+    # Fee percentage.
+    fee.per <- Fee.Per/100
+
+    # Minimum Sell price after you have bought.
+    min.sell.price <- (price * (1 + fee.per)) / (1 - fee.per)
+
+    # Minimum Sell price after you have bought.
+    min.sell.price.gain <- min.sell.price * (1 + gain.per)
+
+    # Minimum buy price after you have sold.
+    min.buy.price <- (price * (1 - fee.per)) / (1 + fee.per)
+
+    # Minimum buy price after you have sold.
+    min.buy.price.gain <- min.buy.price * (1 - gain.per)
+
+    # Results
+    message(paste0("Min. SELL Price (Gain: %", Gain.Per, "): ", round(min.sell.price.gain, Round)))
+    message(paste0("Min. BUY Price (Gain: %", Gain.Per, "): ", round(min.buy.price.gain, Round)))
 
     # Revert the working directory to initial path.
     setwd(WD.temp)

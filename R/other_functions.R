@@ -74,7 +74,7 @@ Load.Install <- function(Package.Names, Quiet = FALSE, Update.All = FALSE) {
 #================================ Load.Packages ================================
 #' @title Load Packages
 #'
-#' @description This function either loads the specified packages.
+#' @description This function loads the specified packages.
 #'
 #' @param Package.Names A vector of strings. The package names to be loaded.
 #' @param Quiet logical. If TRUE, suppress the output.

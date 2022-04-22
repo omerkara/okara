@@ -15,7 +15,7 @@ Load.Packages(Package.Names, Quiet = FALSE)
 Loads the specified packages.
 }
 \description{
-This function either loads the specified packages.
+This function loads the specified packages.
 }
 \details{
 Packages from GitHub can also be loaded.
