@@ -221,7 +221,7 @@ Impute.NA.Mean <- function(x) {
 #'
 #' @details
 #'
-#' @note
+#' @note Note that when object given is a character then trailing zeros are not dropped and all the decimal places are returned. For example, Decimal.Num.Count("0.10") gives 2 decimal places instead of 2.
 #'
 #' @author \href{mailto:omer.kara.ylsy@@gmail.com}{Ömer Kara}
 #'
@@ -234,6 +234,8 @@ Impute.NA.Mean <- function(x) {
 #' @examples
 #' Decimal.Num.Count(0.1)
 #' Decimal.Num.Count("0.1")
+#' Decimal.Num.Count("0.10")
+#' Decimal.Num.Count(0.10)
 #'
 #' Decimal.Num.Count(0.12345)
 #' Decimal.Num.Count("0.12345")
@@ -245,8 +247,13 @@ Decimal.Num.Count <- function(x) {
         x <- as.character(x)
     }
     stopifnot(class(x) == "character")
-    x <- gsub("(.*)(\\.)|([0]*$)", "", x)
-    nchar(x)
+    if (grepl("(\\.)", x)) {
+        x <- gsub("(^.*\\.)", "", x)
+        dec.num <- nchar(x)
+    } else {
+        dec.num <- 0
+    }
+    return(dec.num)
 }
 
 #================================= logPercent ==================================
@@ -465,12 +472,13 @@ SignPrint <- function(x) {
     ifelse(x > 0, "+", "-")
 }
 
-#================= round0, round1, round2, round3, and round4 ==================
-#' @title Functions for Rounding with \code{\link[exams]{round2}}
+#=================================== roundN ====================================
+#' @title Function for Rounding with \code{\link[exams]{round2}}
 #'
-#' @description This set of functions simplify and specialize the \code{\link[exams]{round2}} function in exam package. Each function rounds the given number to the decimal points specified in the function itself.
+#' @description This function simplifies and specializes the \code{\link[exams]{round2}} function in exam package. Function rounds the given number to the decimal points specified in argument digits.
 #'
 #' @param x numeric. A numeric vector.
+#' @param digits numeric. Rounding digits.
 #'
 #' @details The function \code{\link[exams]{round2}} does what is known in German as kaufmaennisches Runden (rounding away from zero for trailing 5s).
 #'
@@ -485,57 +493,26 @@ SignPrint <- function(x) {
 #' @return Numeric value or vector.
 #'
 #' @examples
-#' round0(2.67896)
-#' round1(2.67896)
-#' round2(2.67896)
-#' round3(2.67896)
-#' round4(2.67896)
+#' roundN(2.67896, digits = 0)
+#' roundN(2.67896, digits = 1)
+#' roundN(2.67896, digits = 2)
+#' roundN(2.67896, digits = 3)
+#' roundN(2.67896, digits = 4)
 #'
-#' @name roundN
-NULL
-#> NULL
-#'
-#' @rdname roundN
 #' @export
 #'
-round0 <- function(x) {
-    round(x + base::sign(x) * 1e-10, digits = 0)
-}
-#'
-#' @rdname roundN
-#' @export
-#'
-round1 <- function(x) {
-    round(x + base::sign(x) * 1e-10, digits = 1)
-}
-#'
-#' @rdname roundN
-#' @export
-#'
-round2 <- function(x) {
-    round(x + base::sign(x) * 1e-10, digits = 2)
-}
-#'
-#' @rdname roundN
-#' @export
-#'
-round3 <- function(x) {
-    round(x + base::sign(x) * 1e-10, digits = 3)
-}
-#'
-#' @rdname roundN
-#' @export
-#'
-round4 <- function(x) {
-    round(x + base::sign(x) * 1e-10, digits = 4)
+roundN <- function(x, digits) {
+    res <- round(x + base::sign(x) * 1e-10, digits = digits)
+    return(res)
 }
 
-#================= trunc0, trunc1, trunc2, trunc3, and trunc4 ==================
-#' @title Functions for Truncating without Round
+#=================================== roundUp ====================================
+#' @title Function for Rounding Up with a Given Sensitivity
 #'
-#' @description This set of functions truncates the numbers without rounding. Each function truncates the given number to the decimal points specified in the function itself.
+#' @description Function rounds the numbers up with the given sensitivity.
 #'
 #' @param x numeric. A numeric vector.
+#' @param to numeric. Sensitivity of the rounding.
 #'
 #' @details
 #'
@@ -550,49 +527,84 @@ round4 <- function(x) {
 #' @return Numeric value or vector.
 #'
 #' @examples
-#' trunc0(2.67896)
-#' trunc1(2.67896)
-#' trunc2(2.67896)
-#' trunc3(2.67896)
-#' trunc4(2.67896)
+#' roundUp(2.67896, to = 1)
+#' roundUp(2.67896, to = 0.1)
+#' roundUp(2.67896, to = 0.01)
+#' roundUp(2.67896, to = 0.001)
 #'
-#' @name truncN
-NULL
-#> NULL
-#'
-#' @rdname truncN
 #' @export
 #'
-trunc0 <- function(x) {
-    trunc(x * 1)/1
+roundUp <- function(x, to = 1) {
+    res <- to * ceiling(x / to)
+    return(res)
 }
+
+#=================================== roundDown ====================================
+#' @title Function for Rounding Down with a Given Sensitivity
 #'
-#' @rdname truncN
+#' @description Function rounds the numbers Down with the given sensitivity.
+#'
+#' @param x numeric. A numeric vector.
+#' @param to numeric. Sensitivity of the rounding.
+#'
+#' @details
+#'
+#' @note
+#'
+#' @author \href{mailto:omer.kara.ylsy@@gmail.com}{Ömer Kara}
+#'
+#' @references
+#'
+#' @seealso
+#'
+#' @return Numeric value or vector.
+#'
+#' @examples
+#' roundDown(2.67896, to = 1)
+#' roundDown(2.67896, to = 0.1)
+#' roundDown(2.67896, to = 0.01)
+#' roundDown(2.67896, to = 0.001)
+#'
 #' @export
 #'
-trunc1 <- function(x) {
-    trunc(x * 10)/10
+roundDown <- function(x, to = 1) {
+    res <- to * floor(x / to)
+    return(res)
 }
+
+#================================== truncN ====================================
+#' @title Function for Truncating without Round
 #'
-#' @rdname truncN
+#' @description This function truncates the numbers without rounding. Function truncates the given number to the decimal points specified in argument digits. Note that rounding is performed with 1 extra digits to correctly truncate the values as much as possible.
+#'
+#' @param x numeric. A numeric vector.
+#' @param digits numeric. Truncating digits.
+#'
+#'
+#' @details
+#'
+#' @note
+#'
+#' @author \href{mailto:omer.kara.ylsy@@gmail.com}{Ömer Kara}
+#'
+#' @references
+#'
+#' @seealso
+#'
+#' @return Numeric value or vector.
+#'
+#' @examples
+#' truncN(2.67896, digits = 0)
+#' truncN(2.67896, digits = 1)
+#' truncN(2.67896, digits = 2)
+#' truncN(2.67896, digits = 3)
+#' truncN(2.67896, digits = 4)
+#'
 #' @export
 #'
-trunc2 <- function(x) {
-    trunc(x * 100)/100
-}
-#'
-#' @rdname truncN
-#' @export
-#'
-trunc3 <- function(x) {
-    trunc(x * 1000)/1000
-}
-#'
-#' @rdname truncN
-#' @export
-#'
-trunc4 <- function(x) {
-    trunc(x * 10000)/10000
+truncN <- function(x, digits) {
+    res <- trunc(roundN(x, digits + 1) * (10^digits)) / (10^digits)
+    return(res)
 }
 
 #==================================== END ======================================

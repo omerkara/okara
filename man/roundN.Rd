@@ -2,31 +2,20 @@
 % Please edit documentation in R/other_functions.R
 \name{roundN}
 \alias{roundN}
-\alias{round0}
-\alias{round1}
-\alias{round2}
-\alias{round3}
-\alias{round4}
-\title{Functions for Rounding with \code{\link[exams]{round2}}}
+\title{Function for Rounding with \code{\link[exams]{round2}}}
 \usage{
-round0(x)
-
-round1(x)
-
-round2(x)
-
-round3(x)
-
-round4(x)
+roundN(x, digits)
 }
 \arguments{
 \item{x}{numeric. A numeric vector.}
+
+\item{digits}{numeric. Rounding digits.}
 }
 \value{
 Numeric value or vector.
 }
 \description{
-This set of functions simplify and specialize the \code{\link[exams]{round2}} function in exam package. Each function rounds the given number to the decimal points specified in the function itself.
+This function simplifies and specializes the \code{\link[exams]{round2}} function in exam package. Function rounds the given number to the decimal points specified in argument digits.
 }
 \details{
 The function \code{\link[exams]{round2}} does what is known in German as kaufmaennisches Runden (rounding away from zero for trailing 5s).
@@ -35,11 +24,11 @@ The function \code{\link[exams]{round2}} does what is known in German as kaufmae
 
 }
 \examples{
-round0(2.67896)
-round1(2.67896)
-round2(2.67896)
-round3(2.67896)
-round4(2.67896)
+roundN(2.67896, digits = 0)
+roundN(2.67896, digits = 1)
+roundN(2.67896, digits = 2)
+roundN(2.67896, digits = 3)
+roundN(2.67896, digits = 4)
 
 }
 \references{

@@ -2,7 +2,9 @@
 #================================== .Rprofile ==================================
 #======================= Initial Settings for The Project ======================
 
-#=============================== First Function ================================
+#====================#
+# 1. First Function =====
+#====================#
 .First <- function() {
     cat("\n********************************************************\n")
     cat("\nWelcome to okara Package!\nRemember to edit .Rprofile accordingly!\n")
@@ -16,13 +18,19 @@
     # options("pdfviewer" = "skim")
 }
 
-#================================ Last Function ================================
+#====================#
+# 2. Last Function =====
+#====================#
 .Last <- function()  cat("\nGoodbye!\n")
 
-#================================ R Libraries =================================
+#====================#
+# 3. R Libraries =====
+#====================#
 .libPaths("/Volumes/Omer/Google Drive/Apps/R/R Libraries")
 
-#================================== Settings ===================================
+#====================#
+# 4. Settings =====
+#====================#
 if (interactive()) {
     suppressMessages(require(devtools))
     suppressMessages(require(usethis))
