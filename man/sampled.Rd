@@ -21,12 +21,6 @@ For sample a vector of length size with elements drawn from either x or from the
 \description{
 If only one value is given in \code{\link[base]{sample}} function, it chooses a value between 1 and the number you specified. The redefined sample function solves this problem.
 }
-\details{
-
-}
-\note{
-
-}
 \examples{
 sampled(2, 1)
 sampled(1:5, 2)
@@ -34,9 +28,6 @@ sampled(1:5, 2)
 }
 \references{
 For more information see \code{\link[base]{sample}}.
-}
-\seealso{
-
 }
 \author{
 \href{mailto:omer.kara.ylsy@gmail.com}{Ömer Kara}

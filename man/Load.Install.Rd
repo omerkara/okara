@@ -22,9 +22,6 @@ This function either loads or installs/loads the specified packages.
 \details{
 Packages from GitHub can also be installed/loaded.
 }
-\note{
-
-}
 \examples{
 \dontrun{
 Load.Install(Package.Names = "plyr")
@@ -34,12 +31,6 @@ Load.Install(c("plyr", "dplyr"), Quiet = TRUE, Update.All = TRUE)
 
 Load.Install("FinYang/tsdl")
 }
-
-}
-\references{
-
-}
-\seealso{
 
 }
 \author{

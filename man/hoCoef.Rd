@@ -21,12 +21,6 @@ A t-test result table.
 \description{
 This function performs t-Tests for class lm objects .
 }
-\details{
-
-}
-\note{
-
-}
 \examples{
 \dontrun{
 hoCoef(your.model, term = 2, bo = 0, alt = "two.sided") ## Do not run.
@@ -37,9 +31,6 @@ hoCoef(your.model, term = 4, bo = 3, alt = "greater") ## Do not run.
 }
 \references{
 The hoCoef function is taken directly from the FSA package (version 0.8.32). For more information see \href{https://cran.r-project.org/web/packages/FSA/index.html}{here}.
-}
-\seealso{
-
 }
 \author{
 \href{mailto:omer.kara.ylsy@gmail.com}{Ömer Kara}

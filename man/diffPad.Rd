@@ -15,24 +15,12 @@ A first difference taken ts object or numeric vector with padding.
 \description{
 This function takes the first difference of a given time series data or vector and pads it with the selected lag length while maintaining the attributes of the input data. ts object or vector can be used.
 }
-\details{
-
-}
-\note{
-
-}
 \examples{
 values <- c(1:10)
 x <- values
 x.ts <- ts(data.frame(V1 = values))
 diffPad(x)
 diffPad(x.ts)
-
-}
-\references{
-
-}
-\seealso{
 
 }
 \author{

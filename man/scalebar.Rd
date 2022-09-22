@@ -23,9 +23,6 @@ A sp::plot object with a scale.
 \description{
 This function adds a scale to a projected map created with sp::plot.
 }
-\details{
-
-}
 \note{
 For an unprojected map in R, we can use the \code{\link[maps]{map.scale}} function in maps package. This is applicable to a map created not only by the maps package but also by other cartographic packages. However, in R, there is no scale bar applicable to a projected map. So, use it if your shapefile is projected. It should be noted that using scalebar for a decimal degree or the entire world is not logical because the function cannot convert units and retains them in the unconverted form in the current graphic device. Therefore, if necessary, users must project and coordinate the map appropriately prior to the execution of scalebar.
 }
@@ -37,9 +34,6 @@ scalebar(c(-124, 26), length = 10000, unit = "km", division.cex = .8) ## Do not 
 }
 \references{
 Taken from Auxiliary Cartographic Functions in R: North Arrow, Scale Bar, and Label with a Leader Arrow, Tanimura, 2007. For more information see \href{https://www.jstatsoft.org/article/view/v019c01/v19c01.pdf}{here}.
-}
-\seealso{
-
 }
 \author{
 \href{mailto:omer.kara.ylsy@gmail.com}{Ömer Kara}

@@ -17,22 +17,10 @@ A data frame.
 \description{
 This function prints significant digits by row in a data frame.
 }
-\details{
-
-}
-\note{
-
-}
 \examples{
 \dontrun{
 DigitsByRows(df, digits = c(0, 2)) ## Do not run.
 }
-
-}
-\references{
-
-}
-\seealso{
 
 }
 \author{

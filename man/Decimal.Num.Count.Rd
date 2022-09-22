@@ -15,9 +15,6 @@ An integer.
 \description{
 This function gives the number of decimal places of a number written as character string or numeric object.
 }
-\details{
-
-}
 \note{
 Note that when object given is a character then trailing zeros are not dropped and all the decimal places are returned. For example, Decimal.Num.Count("0.10") gives 2 decimal places instead of 2.
 }
@@ -29,12 +26,6 @@ Decimal.Num.Count(0.10)
 
 Decimal.Num.Count(0.12345)
 Decimal.Num.Count("0.12345")
-
-}
-\references{
-
-}
-\seealso{
 
 }
 \author{

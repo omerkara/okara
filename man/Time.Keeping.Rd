@@ -32,21 +32,12 @@ This function keeps the punched hours for hourly jobs.
 \details{
 This is a personal function of the package author. So, it won't make sense to others.
 }
-\note{
-
-}
 \examples{
 \dontrun{
 Time.Keeping(Hours.Punch = "./hours_punch.txt")
 Time.Keeping(Hours.Punch = "./hours_punch.txt", Exclude.Weekends = FALSE, Target.Hours = NULL)
 Time.Keeping(Hours.Punch = "./hours_punch.txt", First.Date = "2016-08-16", Target.Hours = 20)
 }
-
-}
-\references{
-
-}
-\seealso{
 
 }
 \author{

@@ -52,9 +52,6 @@ All conversions are in character. See below.
 \item NaN.Convert.NA: Converts NaN into NA.
 }
 }
-\note{
-
-}
 \examples{
 \dontrun{
 Dash.Convert.NA(data, "variable.name") ## Do not run.
@@ -66,12 +63,6 @@ Negative.Convert.NA(data, "variable.name") ## Do not run.
 NaN.Convert.Zero(data, "variable.name") ## Do not run.
 NaN.Convert.NA(data, "variable.name") ## Do not run.
 }
-
-}
-\references{
-
-}
-\seealso{
 
 }
 \author{

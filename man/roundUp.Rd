@@ -17,23 +17,11 @@ Numeric value or vector.
 \description{
 Function rounds the numbers up with the given sensitivity.
 }
-\details{
-
-}
-\note{
-
-}
 \examples{
 roundUp(2.67896, to = 1)
 roundUp(2.67896, to = 0.1)
 roundUp(2.67896, to = 0.01)
 roundUp(2.67896, to = 0.001)
-
-}
-\references{
-
-}
-\seealso{
 
 }
 \author{

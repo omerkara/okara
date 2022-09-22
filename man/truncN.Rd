@@ -2,8 +2,23 @@
 % Please edit documentation in R/other_functions.R
 \name{truncN}
 \alias{truncN}
-\title{Function for Truncating without Round}
+\alias{trunc0}
+\alias{trunc1}
+\alias{trunc2}
+\alias{trunc3}
+\alias{trunc4}
+\title{Functions for Truncating without Round}
 \usage{
+trunc0(x)
+
+trunc1(x)
+
+trunc2(x)
+
+trunc3(x)
+
+trunc4(x)
+
 truncN(x, digits)
 }
 \arguments{
@@ -13,28 +28,26 @@ truncN(x, digits)
 }
 \value{
 Numeric value or vector.
+
+Numeric value or vector.
 }
 \description{
+This set of functions truncates the numbers without rounding. Each function truncates the given number to the decimal points specified in the function itself.
+
 This function truncates the numbers without rounding. Function truncates the given number to the decimal points specified in argument digits. Note that rounding is performed with 1 extra digits to correctly truncate the values as much as possible.
 }
-\details{
-
-}
-\note{
-
-}
 \examples{
+trunc0(2.67896)
+trunc1(2.67896)
+trunc2(2.67896)
+trunc3(2.67896)
+trunc4(2.67896)
+
 truncN(2.67896, digits = 0)
 truncN(2.67896, digits = 1)
 truncN(2.67896, digits = 2)
 truncN(2.67896, digits = 3)
 truncN(2.67896, digits = 4)
-
-}
-\references{
-
-}
-\seealso{
 
 }
 \author{

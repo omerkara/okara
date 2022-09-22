@@ -19,23 +19,11 @@ A linear model summary.
 \description{
 This function gives summary for OLS with different type of robust std errors.
 }
-\details{
-
-}
-\note{
-
-}
 \examples{
 \dontrun{
 SummaryR.lm(my.model, type = "hc4") ## Do not run.
 SummaryR.lm(your.model, type = "hc1") ## Do not run.
 }
-
-}
-\references{
-
-}
-\seealso{
 
 }
 \author{

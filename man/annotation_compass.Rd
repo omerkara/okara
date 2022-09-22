@@ -26,12 +26,6 @@ A ggplot2 object with legend.
 \description{
 This function adds text to the specified places (using compass style) of a ggplot2 object.
 }
-\details{
-
-}
-\note{
-
-}
 \examples{
 \dontrun{
 g + annotation_compass(label = "sometext", position = "NE") ## Do not run.
@@ -47,9 +41,6 @@ g + ggplot2::annotate(geom = "text", label = "sometext",
 }
 \references{
 For more information see \href{https://stackoverflow.com/questions/47916307/specify-position-of-geom-text-by-keywords-like-top-bottom-left-right}{here}.
-}
-\seealso{
-
 }
 \author{
 \href{mailto:omer.kara.ylsy@gmail.com}{Ömer Kara}

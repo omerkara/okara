@@ -20,9 +20,6 @@ This function interpolates the selected columns of a data frame with cubic splin
 \details{
 The aim of this function is to interpolate the values between two entries. The argument maxgap in \code{\link[zoo]{na.spline}} function is internally selected in this function to interpolate all missing values. na.rm argument in \code{\link[zoo]{na.spline}} function is selected as FALSE since other NA values should be kept, if there is any.
 }
-\note{
-
-}
 \examples{
 \dontrun{
 Cubic.Spline.Interpolation(data, "Open")
@@ -31,12 +28,6 @@ data.interpolate
 Cubic.Spline.Interpolation(data, c("Open", "High", "Low", "Close"))
 data.interpolate
 }
-
-}
-\references{
-
-}
-\seealso{
 
 }
 \author{

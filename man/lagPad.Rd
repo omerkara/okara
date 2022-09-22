@@ -17,22 +17,10 @@ A lag taken numeric vector with padding.
 \description{
 This function pads the lag taken numeric vector with NA values.
 }
-\details{
-
-}
-\note{
-
-}
 \examples{
 x <- 1:10
 x.t1 <- lagPad(x, 2)
 cbind(x, x.t1)
-
-}
-\references{
-
-}
-\seealso{
 
 }
 \author{

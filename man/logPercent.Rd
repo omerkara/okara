@@ -17,24 +17,12 @@ A value in the logarithmic form which makes sure that the level form value has i
 \description{
 This function makes sure that the level variable of interest increases/decreases, 10\% i.e., while you are dealing with the log form.
 }
-\details{
-
-}
-\note{
-
-}
 \examples{
 x <- 100
 percent <- 10
 log(x)
 logPercent(log(x), percent)
 exp(logPercent(log(x), percent))
-
-}
-\references{
-
-}
-\seealso{
 
 }
 \author{

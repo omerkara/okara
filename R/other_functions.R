@@ -472,6 +472,76 @@ SignPrint <- function(x) {
     ifelse(x > 0, "+", "-")
 }
 
+#================= round0, round1, round2, round3, and round4 ==================
+#' @title Functions for Rounding with \code{\link[exams]{round2}}
+#'
+#' @description This set of functions simplify and specialize the \code{\link[exams]{round2}} function in exam package. Each function rounds the given number to the decimal points specified in the function itself.
+#'
+#' @param x numeric. A numeric vector.
+#'
+#' @details The function \code{\link[exams]{round2}} does what is known in German as kaufmaennisches Runden (rounding away from zero for trailing 5s).
+#'
+#' @note
+#'
+#' @author \href{mailto:omer.kara.ylsy@@gmail.com}{Ömer Kara}
+#'
+#' @references For more information see \code{\link[exams]{round2}}.
+#'
+#' @seealso \code{\link[exams]{round2}}
+#'
+#' @return Numeric value or vector.
+#'
+#' @examples
+#' round0(2.67896)
+#' round1(2.67896)
+#' round2(2.67896)
+#' round3(2.67896)
+#' round4(2.67896)
+#'
+#' @name roundX
+NULL
+#> NULL
+#'
+#' @rdname roundX
+#' @export
+#'
+round0 <- function(x) {
+    res <- round(x + base::sign(x) * 1e-10, digits = 0)
+    return(res)
+}
+#'
+#' @rdname roundX
+#' @export
+#'
+round1 <- function(x) {
+    res <- round(x + base::sign(x) * 1e-10, digits = 1)
+    return(res)
+}
+#'
+#' @rdname roundX
+#' @export
+#'
+round2 <- function(x) {
+    res <- round(x + base::sign(x) * 1e-10, digits = 2)
+    return(res)
+}
+#'
+#' @rdname roundX
+#' @export
+#'
+round3 <- function(x) {
+    res <- round(x + base::sign(x) * 1e-10, digits = 3)
+    return(res)
+}
+#'
+#' @rdname roundX
+#' @export
+#'
+round4 <- function(x) {
+    res <- round(x + base::sign(x) * 1e-10, digits = 4)
+    return(res)
+}
+
 #=================================== roundN ====================================
 #' @title Function for Rounding with \code{\link[exams]{round2}}
 #'
@@ -569,6 +639,76 @@ roundUp <- function(x, to = 1) {
 #'
 roundDown <- function(x, to = 1) {
     res <- to * floor(x / to)
+    return(res)
+}
+
+#================= trunc0, trunc1, trunc2, trunc3, and trunc4 ==================
+#' @title Functions for Truncating without Round
+#'
+#' @description This set of functions truncates the numbers without rounding. Each function truncates the given number to the decimal points specified in the function itself.
+#'
+#' @param x numeric. A numeric vector.
+#'
+#' @details
+#'
+#' @note
+#'
+#' @author \href{mailto:omer.kara.ylsy@@gmail.com}{Ömer Kara}
+#'
+#' @references
+#'
+#' @seealso
+#'
+#' @return Numeric value or vector.
+#'
+#' @examples
+#' trunc0(2.67896)
+#' trunc1(2.67896)
+#' trunc2(2.67896)
+#' trunc3(2.67896)
+#' trunc4(2.67896)
+#'
+#' @name truncN
+NULL
+#> NULL
+#'
+#' @rdname truncN
+#' @export
+#'
+trunc0 <- function(x) {
+    res <- trunc(roundN(x, 0 + 1) * (10^0)) / (10^0)
+    return(res)
+}
+#'
+#' @rdname truncN
+#' @export
+#'
+trunc1 <- function(x) {
+    res <- trunc(roundN(x, 1 + 1) * (10^1)) / (10^1)
+    return(res)
+}
+#'
+#' @rdname truncN
+#' @export
+#'
+trunc2 <- function(x) {
+    res <- trunc(roundN(x, 2 + 1) * (10^2)) / (10^2)
+    return(res)
+}
+#'
+#' @rdname truncN
+#' @export
+#'
+trunc3 <- function(x) {
+    res <- trunc(roundN(x, 3 + 1) * (10^3)) / (10^3)
+    return(res)
+}
+#'
+#' @rdname truncN
+#' @export
+#'
+trunc4 <- function(x) {
+    res <- trunc(roundN(x, 4 + 1) * (10^4)) / (10^4)
     return(res)
 }
 

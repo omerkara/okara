@@ -15,20 +15,8 @@ A numeric vector.
 \description{
 This function fills NA values with mean value.
 }
-\details{
-
-}
-\note{
-
-}
 \examples{
 Impute.NA.Mean(c(1:5, rep(NA, 1)))
-
-}
-\references{
-
-}
-\seealso{
 
 }
 \author{

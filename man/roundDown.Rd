@@ -17,23 +17,11 @@ Numeric value or vector.
 \description{
 Function rounds the numbers Down with the given sensitivity.
 }
-\details{
-
-}
-\note{
-
-}
 \examples{
 roundDown(2.67896, to = 1)
 roundDown(2.67896, to = 0.1)
 roundDown(2.67896, to = 0.01)
 roundDown(2.67896, to = 0.001)
-
-}
-\references{
-
-}
-\seealso{
 
 }
 \author{

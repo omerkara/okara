@@ -22,19 +22,10 @@ This function gives you the minimum sell price after you buy or the minimum buy 
 \details{
 This is a personal function of the package author. So, it won't make sense to others.
 }
-\note{
-
-}
 \examples{
 Min.Sell.Buy.Price(Price = 60)
 Min.Sell.Buy.Price(Price = 60, Fee.Per = 0.08)
 Min.Sell.Buy.Price(Price = 60, Fee.Per = 0.1, Round = 3)
-
-}
-\references{
-
-}
-\seealso{
 
 }
 \author{

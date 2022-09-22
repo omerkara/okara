@@ -39,20 +39,11 @@ This set of functions converts given distances either from km-to-degrees and mil
 \item d2ml: Converts degrees to miles by the selected latitude degree.
 }
 }
-\note{
-
-}
 \examples{
 km2d(100)
 ml2d(100)
 d2km(100)
 d2ml(100)
-
-}
-\references{
-
-}
-\seealso{
 
 }
 \author{

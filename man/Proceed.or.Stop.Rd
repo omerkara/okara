@@ -15,22 +15,10 @@ A text message.
 \description{
 This function produces warning message if there is anything wrong with your code.
 }
-\details{
-
-}
-\note{
-
-}
 \examples{
 Proceed.or.Stop(5 < 6)
 Proceed.or.Stop(5 < 3)
 Proceed.or.Stop(5 == 5)
-
-}
-\references{
-
-}
-\seealso{
 
 }
 \author{

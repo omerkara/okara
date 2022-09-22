@@ -24,20 +24,11 @@ This function gives you the minimum sell price after you buy or the minimum buy 
 \details{
 This is a personal function of the package author. So, it won't make sense to others.
 }
-\note{
-
-}
 \examples{
 Min.Sell.Buy.Price.Gain(Price = 100)
 Min.Sell.Buy.Price.Gain(Price = 100, Gain.Per = 1.5)
 Min.Sell.Buy.Price.Gain(Price = 100, Fee.Per = 0.01)
 Min.Sell.Buy.Price.Gain(Price = 100, Gain.Per = 2.5, Fee.Per = 0.05, Round = 4)
-
-}
-\references{
-
-}
-\seealso{
 
 }
 \author{

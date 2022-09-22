@@ -20,9 +20,6 @@ This function loads the specified packages.
 \details{
 Packages from GitHub can also be loaded.
 }
-\note{
-
-}
 \examples{
 \dontrun{
 Load.Packages(Package.Names = "plyr")
@@ -32,12 +29,6 @@ Load.Packages(c("plyr", "dplyr"), Quiet = TRUE)
 
 Load.Packages("tsdl") ## Github package.
 }
-
-}
-\references{
-
-}
-\seealso{
 
 }
 \author{

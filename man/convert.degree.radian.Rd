@@ -27,18 +27,9 @@ This set of functions either converts the given value from degrees-to-radians or
 \item rad2deg: Converts radians to degrees.
 }
 }
-\note{
-
-}
 \examples{
 deg2rad(100)
 rad2deg(100)
-
-}
-\references{
-
-}
-\seealso{
 
 }
 \author{

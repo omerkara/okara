@@ -27,18 +27,9 @@ This set of functions converts given distances either from km-to-miles or miles-
 \item ml2km: Converts miles to kilometers.
 }
 }
-\note{
-
-}
 \examples{
 km2ml(1.6)
 ml2km(1)
-
-}
-\references{
-
-}
-\seealso{
 
 }
 \author{

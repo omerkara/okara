@@ -19,12 +19,6 @@ Invisible data.frame. Mainly prints via \code{\link{message}} in a for loop.
 \description{
 This function lists the data sets (with their structure) in specified R packages.
 }
-\details{
-
-}
-\note{
-
-}
 \examples{
 \dontrun{
 }

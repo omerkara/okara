@@ -15,21 +15,9 @@ Character string either "+" or "-".
 \description{
 This function shows the sign of a given single numeric value.
 }
-\details{
-
-}
-\note{
-
-}
 \examples{
 SignPrint(2)
 SignPrint(-2)
-
-}
-\references{
-
-}
-\seealso{
 
 }
 \author{

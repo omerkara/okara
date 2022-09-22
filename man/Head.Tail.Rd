@@ -17,23 +17,11 @@ A matrix look alike object.
 \description{
 This function shows the first and last selected items of a data frame, then presents these together.
 }
-\details{
-
-}
-\note{
-
-}
 \examples{
 \dontrun{
 Head.Tail(data, 5) ## Do not run.
 Head.Tail(data, 10) ## Do not run.
 }
-
-}
-\references{
-
-}
-\seealso{
 
 }
 \author{

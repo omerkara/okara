@@ -15,21 +15,12 @@ A numeric or character vector.
 \description{
 This function performs permutation of a given vector without replacement.
 }
-\details{
-
-}
-\note{
-
-}
 \examples{
 Perm.No.Replace(v = c(1:3))
 
 }
 \references{
 For more information see \href{https://www.r-bloggers.com/2019/06/learning-r-permutations-and-combinations-with-base-r/}{here}.
-}
-\seealso{
-
 }
 \author{
 \href{mailto:omer.kara.ylsy@gmail.com}{Ömer Kara}

@@ -19,12 +19,6 @@ logical.
 \description{
 This function creates an interactive yes/no question.
 }
-\details{
-
-}
-\note{
-
-}
 \examples{
 \dontrun{
 if (Ask.User.YN.Question("Your question goes here?", GUI = FALSE, add.lines.before = TRUE)) {
@@ -33,12 +27,6 @@ if (Ask.User.YN.Question("Your question goes here?", GUI = FALSE, add.lines.befo
     More Code Here
 }
 }
-
-}
-\references{
-
-}
-\seealso{
 
 }
 \author{

@@ -15,23 +15,11 @@ A ggplot2 legend.
 \description{
 This function extracts legend from ggplot2 plots.
 }
-\details{
-
-}
-\note{
-
-}
 \examples{
 \dontrun{
 g <- ggplot(...) ## Do not run.
 g_legend() ## Do not run.
 }
-
-}
-\references{
-
-}
-\seealso{
 
 }
 \author{
