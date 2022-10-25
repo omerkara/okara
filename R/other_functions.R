@@ -256,6 +256,44 @@ Decimal.Num.Count <- function(x) {
     return(dec.num)
 }
 
+#============================== Percent.Rank ==============================
+#' @title Percentage Rank
+#'
+#' @description This function calculates percentage rank same as the "PERCENTRANK.INC()" in Excel.
+#'
+#' @param data numeric vector. Vector of numeric values.
+#' @param signif integer. A numeric value representing significant decimal digits.
+#' @param percent logical. Default is TRUE. If FALSE, the results are in ratio. If TRUE, the results are in percentage.
+#'
+#' @details
+#'
+#' @note
+#'
+#' @author \href{mailto:omer.kara.ylsy@@gmail.com}{Ömer Kara}
+#'
+#' @references
+#'
+#' @seealso
+#'
+#' @return An numeric vector.
+#'
+#' @examples
+#' \dontrun{
+#' Percent.Rank(data, signif = 3, percent = TRUE)
+#' Percent.Rank(data, signif = 5, percent = FALSE)
+#' }
+#'
+#' @export
+#'
+Percent.Rank <- function(data, signif = 3, percent = TRUE) {
+    data <- roundN(data, signif)
+    x <- (rank(data, ties.method = "min", na.last = "keep") - 1) / (sum(!is.na(data)) - 1)
+    if (percent == TRUE) {
+        x <- x * 100
+    }
+    return(x)
+}
+
 #================================= logPercent ==================================
 #' @title Percentage Change for Log Variables
 #'
