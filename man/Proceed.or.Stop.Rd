@@ -22,5 +22,5 @@ Proceed.or.Stop(5 == 5)
 
 }
 \author{
-\href{mailto:omer.kara.ylsy@gmail.com}{Ömer Kara}
+\href{mailto:omer.kara.ylsy@gmail.com}{Omer Kara}
 }

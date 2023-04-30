@@ -22,7 +22,7 @@
 #'
 #' @note
 #'
-#' @author \href{mailto:omer.kara.ylsy@@gmail.com}{Ömer Kara}
+#' @author \href{mailto:omer.kara.ylsy@@gmail.com}{Omer Kara}
 #'
 #' @references Taken from Auxiliary Cartographic Functions in R: North Arrow, Scale Bar, and Label with a Leader Arrow, Tanimura, 2007. For more information see \href{https://www.jstatsoft.org/article/view/v019c01/v19c01.pdf}{here}.
 #'
@@ -87,7 +87,7 @@ northarrow <- function(loc, size, bearing = 0, cols, cex = 1, ...) {
 #'
 #' @note For an unprojected map in R, we can use the \code{\link[maps]{map.scale}} function in maps package. This is applicable to a map created not only by the maps package but also by other cartographic packages. However, in R, there is no scale bar applicable to a projected map. So, use it if your shapefile is projected. It should be noted that using scalebar for a decimal degree or the entire world is not logical because the function cannot convert units and retains them in the unconverted form in the current graphic device. Therefore, if necessary, users must project and coordinate the map appropriately prior to the execution of scalebar.
 #'
-#' @author \href{mailto:omer.kara.ylsy@@gmail.com}{Ömer Kara}
+#' @author \href{mailto:omer.kara.ylsy@@gmail.com}{Omer Kara}
 #'
 #' @references Taken from Auxiliary Cartographic Functions in R: North Arrow, Scale Bar, and Label with a Leader Arrow, Tanimura, 2007. For more information see \href{https://www.jstatsoft.org/article/view/v019c01/v19c01.pdf}{here}.
 #'
@@ -138,7 +138,7 @@ scalebar <- function(loc, length, unit = "km", division.cex = .8, ...) {
 #'
 #' @note
 #'
-#' @author \href{mailto:omer.kara.ylsy@@gmail.com}{Ömer Kara}
+#' @author \href{mailto:omer.kara.ylsy@@gmail.com}{Omer Kara}
 #'
 #' @references
 #'
@@ -190,7 +190,7 @@ ml2km <- function(ml) {
 #'
 #' @note
 #'
-#' @author \href{mailto:omer.kara.ylsy@@gmail.com}{Ömer Kara}
+#' @author \href{mailto:omer.kara.ylsy@@gmail.com}{Omer Kara}
 #'
 #' @references
 #'
@@ -264,7 +264,7 @@ d2ml <- function(d, base.latitude = 38.280479) {
 #'
 #' @note
 #'
-#' @author \href{mailto:omer.kara.ylsy@@gmail.com}{Ömer Kara}
+#' @author \href{mailto:omer.kara.ylsy@@gmail.com}{Omer Kara}
 #'
 #' @references
 #'

@@ -27,5 +27,5 @@ data.diff
 
 }
 \author{
-\href{mailto:omer.kara.ylsy@gmail.com}{Ömer Kara}
+\href{mailto:omer.kara.ylsy@gmail.com}{Omer Kara}
 }

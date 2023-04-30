@@ -27,5 +27,5 @@ SummaryR.lm(your.model, type = "hc1") ## Do not run.
 
 }
 \author{
-\href{mailto:omer.kara.ylsy@gmail.com}{Ömer Kara}
+\href{mailto:omer.kara.ylsy@gmail.com}{Omer Kara}
 }

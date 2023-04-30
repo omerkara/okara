@@ -17,7 +17,7 @@
 #'
 #' @note
 #'
-#' @author \href{mailto:omer.kara.ylsy@@gmail.com}{Ömer Kara}
+#' @author \href{mailto:omer.kara.ylsy@@gmail.com}{Omer Kara}
 #'
 #' @references
 #'
@@ -55,7 +55,7 @@ g_legend <- function(a.gplot) {
 #'
 #' @note
 #'
-#' @author \href{mailto:omer.kara.ylsy@@gmail.com}{Ömer Kara}
+#' @author \href{mailto:omer.kara.ylsy@@gmail.com}{Omer Kara}
 #'
 #' @references For more information see \href{https://stackoverflow.com/questions/47916307/specify-position-of-geom-text-by-keywords-like-top-bottom-left-right}{here}.
 #'
@@ -169,7 +169,7 @@ annotation_compass <- function(label, position = c("N", "NE", "E", "SE", "S", "S
 #'
 #' @note
 #'
-#' @author \href{mailto:omer.kara.ylsy@@gmail.com}{Ömer Kara}
+#' @author \href{mailto:omer.kara.ylsy@@gmail.com}{Omer Kara}
 #'
 #' @references These functions are taken from \href{https://github.com/fdryan/R/blob/master/ggplot2_formatter.r}{here}.
 #'
@@ -210,11 +210,11 @@ human_numbers <- function(x = NULL, smbl = "", signif = 1) {
             if (k < 1) {
                 paste0(y_is_positive, smbl, round(abs(y), signif))
             } else if (m < 1) {
-                paste0(y_is_positive, smbl, k , "k")
+                paste0(y_is_positive, smbl, k, "k")
             } else if (b < 1) {
-                paste0(y_is_positive, smbl, m ,"m")
+                paste0(y_is_positive, smbl, m,"m")
             } else if (tn < 1) {
-                paste0(y_is_positive, smbl, b ,"bn")
+                paste0(y_is_positive, smbl, b,"bn")
             } else {
                 paste0(y_is_positive, smbl, tn, "tn")
             }
@@ -233,22 +233,22 @@ human_num <- function(x) {human_numbers(x, smbl = "")}
 #' @rdname human.numbers
 #' @export
 #'
-human_per <- function(x) {human_numbers(x, smbl = "%")}
+human_per <- function(x) {human_numbers(x, smbl = "\u0025")}
 #'
 #' @rdname human.numbers
 #' @export
 #'
-human_gbp <- function(x) {human_numbers(x, smbl = "£")}
+human_gbp <- function(x) {human_numbers(x, smbl = "\u00A3")}
 #'
 #' @rdname human.numbers
 #' @export
 #'
-human_usd <- function(x) {human_numbers(x, smbl = "$")}
+human_usd <- function(x) {human_numbers(x, smbl = "\u0024")}
 #'
 #' @rdname human.numbers
 #' @export
 #'
-human_euro <- function(x) {human_numbers(x, smbl = "€")}
+human_euro <- function(x) {human_numbers(x, smbl = "\u20ac")}
 #'
 #' @rdname human.numbers
 #' @export

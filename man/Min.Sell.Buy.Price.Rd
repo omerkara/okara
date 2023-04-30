@@ -29,5 +29,5 @@ Min.Sell.Buy.Price(Price = 60, Fee.Per = 0.1, Round = 3)
 
 }
 \author{
-\href{mailto:omer.kara.ylsy@gmail.com}{Ömer Kara}
+\href{mailto:omer.kara.ylsy@gmail.com}{Omer Kara}
 }

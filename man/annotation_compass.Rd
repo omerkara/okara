@@ -43,5 +43,5 @@ g + ggplot2::annotate(geom = "text", label = "sometext",
 For more information see \href{https://stackoverflow.com/questions/47916307/specify-position-of-geom-text-by-keywords-like-top-bottom-left-right}{here}.
 }
 \author{
-\href{mailto:omer.kara.ylsy@gmail.com}{Ömer Kara}
+\href{mailto:omer.kara.ylsy@gmail.com}{Omer Kara}
 }

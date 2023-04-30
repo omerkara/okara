@@ -46,5 +46,5 @@ For more information see \code{\link[exams]{round2}}.
 \code{\link[exams]{round2}}
 }
 \author{
-\href{mailto:omer.kara.ylsy@gmail.com}{Ömer Kara}
+\href{mailto:omer.kara.ylsy@gmail.com}{Omer Kara}
 }

@@ -18,7 +18,7 @@
 #'
 #' @note
 #'
-#' @author \href{mailto:omer.kara.ylsy@@gmail.com}{Ömer Kara}
+#' @author \href{mailto:omer.kara.ylsy@@gmail.com}{Omer Kara}
 #'
 #' @references
 #'
@@ -83,7 +83,7 @@ Load.Install <- function(Package.Names, Quiet = FALSE, Update.All = FALSE) {
 #'
 #' @note
 #'
-#' @author \href{mailto:omer.kara.ylsy@@gmail.com}{Ömer Kara}
+#' @author \href{mailto:omer.kara.ylsy@@gmail.com}{Omer Kara}
 #'
 #' @references
 #'
@@ -120,7 +120,7 @@ Load.Packages <- function(Package.Names, Quiet = FALSE) {
 #'
 #' @note
 #'
-#' @author \href{mailto:omer.kara.ylsy@@gmail.com}{Ömer Kara}
+#' @author \href{mailto:omer.kara.ylsy@@gmail.com}{Omer Kara}
 #'
 #' @references
 #'
@@ -157,7 +157,7 @@ Proceed.or.Stop <- function(result) {
 #'
 #' @note
 #'
-#' @author \href{mailto:omer.kara.ylsy@@gmail.com}{Ömer Kara}
+#' @author \href{mailto:omer.kara.ylsy@@gmail.com}{Omer Kara}
 #'
 #' @references
 #'
@@ -195,7 +195,7 @@ Ask.User.YN.Question <- function(question, GUI = TRUE, add.lines.before = TRUE) 
 #'
 #' @note
 #'
-#' @author \href{mailto:omer.kara.ylsy@@gmail.com}{Ömer Kara}
+#' @author \href{mailto:omer.kara.ylsy@@gmail.com}{Omer Kara}
 #'
 #' @references
 #'
@@ -223,7 +223,7 @@ Impute.NA.Mean <- function(x) {
 #'
 #' @note Note that when object given is a character then trailing zeros are not dropped and all the decimal places are returned. For example, Decimal.Num.Count("0.10") gives 2 decimal places instead of 2.
 #'
-#' @author \href{mailto:omer.kara.ylsy@@gmail.com}{Ömer Kara}
+#' @author \href{mailto:omer.kara.ylsy@@gmail.com}{Omer Kara}
 #'
 #' @references
 #'
@@ -243,10 +243,10 @@ Impute.NA.Mean <- function(x) {
 #' @export
 #'
 Decimal.Num.Count <- function(x) {
-    if (class(x) == "numeric") {
+    if (is.numeric(x) == TRUE) {
         x <- as.character(x)
     }
-    stopifnot(class(x) == "character")
+    stopifnot(is.character(x) == TRUE)
     if (grepl("(\\.)", x)) {
         x <- gsub("(^.*\\.)", "", x)
         dec.num <- nchar(x)
@@ -269,7 +269,7 @@ Decimal.Num.Count <- function(x) {
 #'
 #' @note
 #'
-#' @author \href{mailto:omer.kara.ylsy@@gmail.com}{Ömer Kara}
+#' @author \href{mailto:omer.kara.ylsy@@gmail.com}{Omer Kara}
 #'
 #' @references
 #'
@@ -306,7 +306,7 @@ Percent.Rank <- function(data, signif = 3, percent = TRUE) {
 #'
 #' @note
 #'
-#' @author \href{mailto:omer.kara.ylsy@@gmail.com}{Ömer Kara}
+#' @author \href{mailto:omer.kara.ylsy@@gmail.com}{Omer Kara}
 #'
 #' @references
 #'
@@ -340,7 +340,7 @@ logPercent <- function(Variable, Percent) {
 #'
 #' @note
 #'
-#' @author \href{mailto:omer.kara.ylsy@@gmail.com}{Ömer Kara}
+#' @author \href{mailto:omer.kara.ylsy@@gmail.com}{Omer Kara}
 #'
 #' @references
 #'
@@ -378,7 +378,7 @@ lagPad <- function(x, k) {
 #'
 #' @note
 #'
-#' @author \href{mailto:omer.kara.ylsy@@gmail.com}{Ömer Kara}
+#' @author \href{mailto:omer.kara.ylsy@@gmail.com}{Omer Kara}
 #'
 #' @references
 #'
@@ -421,7 +421,7 @@ diffPad <- function(x) {
 #'
 #' @note
 #'
-#' @author \href{mailto:omer.kara.ylsy@@gmail.com}{Ömer Kara}
+#' @author \href{mailto:omer.kara.ylsy@@gmail.com}{Omer Kara}
 #'
 #' @references For more information see \code{\link[base]{sample}}.
 #'
@@ -454,7 +454,7 @@ sampled <- function(x, size, replace = FALSE, prob = NULL) {
 #'
 #' @note
 #'
-#' @author \href{mailto:omer.kara.ylsy@@gmail.com}{Ömer Kara}
+#' @author \href{mailto:omer.kara.ylsy@@gmail.com}{Omer Kara}
 #'
 #' @references For more information see \href{https://www.r-bloggers.com/2019/06/learning-r-permutations-and-combinations-with-base-r/}{here}.
 #'
@@ -492,7 +492,7 @@ Perm.No.Replace <- function(v) {
 #'
 #' @note
 #'
-#' @author \href{mailto:omer.kara.ylsy@@gmail.com}{Ömer Kara}
+#' @author \href{mailto:omer.kara.ylsy@@gmail.com}{Omer Kara}
 #'
 #' @references
 #'
@@ -521,7 +521,7 @@ SignPrint <- function(x) {
 #'
 #' @note
 #'
-#' @author \href{mailto:omer.kara.ylsy@@gmail.com}{Ömer Kara}
+#' @author \href{mailto:omer.kara.ylsy@@gmail.com}{Omer Kara}
 #'
 #' @references For more information see \code{\link[exams]{round2}}.
 #'
@@ -592,7 +592,7 @@ round4 <- function(x) {
 #'
 #' @note
 #'
-#' @author \href{mailto:omer.kara.ylsy@@gmail.com}{Ömer Kara}
+#' @author \href{mailto:omer.kara.ylsy@@gmail.com}{Omer Kara}
 #'
 #' @references For more information see \code{\link[exams]{round2}}.
 #'
@@ -626,7 +626,7 @@ roundN <- function(x, digits) {
 #'
 #' @note
 #'
-#' @author \href{mailto:omer.kara.ylsy@@gmail.com}{Ömer Kara}
+#' @author \href{mailto:omer.kara.ylsy@@gmail.com}{Omer Kara}
 #'
 #' @references
 #'
@@ -659,7 +659,7 @@ roundUp <- function(x, to = 1) {
 #'
 #' @note
 #'
-#' @author \href{mailto:omer.kara.ylsy@@gmail.com}{Ömer Kara}
+#' @author \href{mailto:omer.kara.ylsy@@gmail.com}{Omer Kara}
 #'
 #' @references
 #'
@@ -691,7 +691,7 @@ roundDown <- function(x, to = 1) {
 #'
 #' @note
 #'
-#' @author \href{mailto:omer.kara.ylsy@@gmail.com}{Ömer Kara}
+#' @author \href{mailto:omer.kara.ylsy@@gmail.com}{Omer Kara}
 #'
 #' @references
 #'
@@ -763,7 +763,7 @@ trunc4 <- function(x) {
 #'
 #' @note
 #'
-#' @author \href{mailto:omer.kara.ylsy@@gmail.com}{Ömer Kara}
+#' @author \href{mailto:omer.kara.ylsy@@gmail.com}{Omer Kara}
 #'
 #' @references
 #'

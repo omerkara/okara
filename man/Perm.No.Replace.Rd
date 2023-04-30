@@ -23,5 +23,5 @@ Perm.No.Replace(v = c(1:3))
 For more information see \href{https://www.r-bloggers.com/2019/06/learning-r-permutations-and-combinations-with-base-r/}{here}.
 }
 \author{
-\href{mailto:omer.kara.ylsy@gmail.com}{Ömer Kara}
+\href{mailto:omer.kara.ylsy@gmail.com}{Omer Kara}
 }

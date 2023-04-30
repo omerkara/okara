@@ -18,7 +18,7 @@
 #'
 #' @note
 #'
-#' @author \href{mailto:omer.kara.ylsy@@gmail.com}{Ömer Kara}
+#' @author \href{mailto:omer.kara.ylsy@@gmail.com}{Omer Kara}
 #'
 #' @references
 #'
@@ -53,7 +53,7 @@ Head.Tail <- function(x, Select) {
 #'
 #' @note
 #'
-#' @author \href{mailto:omer.kara.ylsy@@gmail.com}{Ömer Kara}
+#' @author \href{mailto:omer.kara.ylsy@@gmail.com}{Omer Kara}
 #'
 #' @references
 #'
@@ -134,7 +134,7 @@ Cubic.Spline.Interpolation <- function(Data, Column.Names) {
 #'
 #' @note
 #'
-#' @author \href{mailto:omer.kara.ylsy@@gmail.com}{Ömer Kara}
+#' @author \href{mailto:omer.kara.ylsy@@gmail.com}{Omer Kara}
 #'
 #' @references
 #'
@@ -175,7 +175,7 @@ DigitsByRows <- function(df, digits) {
 #'
 #' @note
 #'
-#' @author \href{mailto:omer.kara.ylsy@@gmail.com}{Ömer Kara}
+#' @author \href{mailto:omer.kara.ylsy@@gmail.com}{Omer Kara}
 #'
 #' @references
 #'
@@ -228,7 +228,7 @@ Diff.Col <- function(Data, Diff.ColNames, Output) {
 #'
 #' @note
 #'
-#' @author \href{mailto:omer.kara.ylsy@@gmail.com}{Ömer Kara}
+#' @author \href{mailto:omer.kara.ylsy@@gmail.com}{Omer Kara}
 #'
 #' @references
 #'
@@ -379,7 +379,7 @@ NaN.Convert.NA <- function(data, variable) {
 #'
 #' @note
 #'
-#' @author \href{mailto:omer.kara.ylsy@@gmail.com}{Ömer Kara}
+#' @author \href{mailto:omer.kara.ylsy@@gmail.com}{Omer Kara}
 #'
 #' @references This function is taken from \href{https://github.com/brry/berryFunctions/blob/master/R/dataStr.R}{here}.
 #'
@@ -389,9 +389,9 @@ NaN.Convert.NA <- function(data, variable) {
 #'
 #' @examples
 #' \dontrun{
-## dataStr() ## All loaded packages on search path (package = NULL).
-## dataStr("datasets") ## Only datasets in base R.
-## dataStr("colorspace") ## Works with an installed but unloaded package.
+#' dataStr() ## All loaded packages on search path (package = NULL).
+#' dataStr("datasets") ## Only datasets in base R.
+#' dataStr("colorspace") ## Works with an installed but unloaded package.
 #' }
 #'
 #' @export

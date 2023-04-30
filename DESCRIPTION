@@ -1,37 +1,35 @@
 Package: okara
-Title: Ömer Kara's Personal Utility Functions
-Version: 1.1.7
+Title: Omer Kara's Personal Utility Functions
+Version: 1.1.8
 Authors@R: 
-    person(given = "Ömer",
+    person(given = "Omer",
            family = "Kara",
            role = c("aut", "cre"),
            email = "omer.kara.ylsy@gmail.com",
            comment = c(ORCID = "0000-0001-7697-0319"))
-Description: The okara package consists of Ömer Kara's frequently used
-    utility functions about the following topics: data manipulation, data
+Description: The okara package consists of Omer Kara's frequently used
+    utility functions about the following topics. Data manipulation, data
     utility, graphic/plotting, estimation, spatial analysis, package 
-    installing/loading and some toher utility functions.
+    installing/loading and some other utility functions.
 License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
 Roxygen: list(markdown = TRUE)
-RoxygenNote: 7.2.1
+RoxygenNote: 7.2.3
 Imports: 
     devtools,
-    ggplot2,
     utils,
-    grid,
-    sp,
+    stats,
     graphics,
+    ggplot2,
+    grid,
     fields,
     zoo,
     car,
-    stats,
     stringr,
     tidyr,
     magrittr,
-    lubridate,
-    usethis
+    lubridate
 Suggests: 
     rmarkdown,
     knitr,

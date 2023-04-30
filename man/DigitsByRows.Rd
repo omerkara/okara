@@ -24,5 +24,5 @@ DigitsByRows(df, digits = c(0, 2)) ## Do not run.
 
 }
 \author{
-\href{mailto:omer.kara.ylsy@gmail.com}{Ömer Kara}
+\href{mailto:omer.kara.ylsy@gmail.com}{Omer Kara}
 }

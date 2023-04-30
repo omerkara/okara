@@ -35,5 +35,5 @@ northarrow(c(-124, 26), size = 1, cex = 1, bearing = 0) ## Do not run.
 Taken from Auxiliary Cartographic Functions in R: North Arrow, Scale Bar, and Label with a Leader Arrow, Tanimura, 2007. For more information see \href{https://www.jstatsoft.org/article/view/v019c01/v19c01.pdf}{here}.
 }
 \author{
-\href{mailto:omer.kara.ylsy@gmail.com}{Ömer Kara}
+\href{mailto:omer.kara.ylsy@gmail.com}{Omer Kara}
 }

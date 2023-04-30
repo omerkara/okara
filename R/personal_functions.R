@@ -20,7 +20,7 @@
 #'
 #' @note
 #'
-#' @author \href{mailto:omer.kara.ylsy@@gmail.com}{Ömer Kara}
+#' @author \href{mailto:omer.kara.ylsy@@gmail.com}{Omer Kara}
 #'
 #' @references
 #'
@@ -40,8 +40,8 @@
 Time.Keeping <- function(Hours.Punch, First.Date = NULL, Last.Date = NULL, Exclude.Weekends = FALSE, Target.Hours = NULL) {
     if (!requireNamespace("stringr")) stop("Required stringr package is missing.")
     if (!requireNamespace("tidyr")) stop("Required tidyr package is missing.")
-    if (!requireNamespace("magrittr")) stop("Required magrittr package is missing.")
     if (!requireNamespace("lubridate")) stop("Required lubridate package is missing.")
+    if (!requireNamespace("magrittr")) stop("Required magrittr package is missing.")
 
     # Saves the current working directory for further use.
     WD.temp <- getwd()
@@ -186,7 +186,7 @@ Time.Keeping <- function(Hours.Punch, First.Date = NULL, Last.Date = NULL, Exclu
 #'
 #' @note
 #'
-#' @author \href{mailto:omer.kara.ylsy@@gmail.com}{Ömer Kara}
+#' @author \href{mailto:omer.kara.ylsy@@gmail.com}{Omer Kara}
 #'
 #' @references
 #'
@@ -263,7 +263,7 @@ Min.Sell.Buy.Price <- function(Price, Fee.Per = 0.1, Round = 2) {
 #'
 #' @note
 #'
-#' @author \href{mailto:omer.kara.ylsy@@gmail.com}{Ömer Kara}
+#' @author \href{mailto:omer.kara.ylsy@@gmail.com}{Omer Kara}
 #'
 #' @references
 #'

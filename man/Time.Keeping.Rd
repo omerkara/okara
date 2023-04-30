@@ -41,5 +41,5 @@ Time.Keeping(Hours.Punch = "./hours_punch.txt", First.Date = "2016-08-16", Targe
 
 }
 \author{
-\href{mailto:omer.kara.ylsy@gmail.com}{Ömer Kara}
+\href{mailto:omer.kara.ylsy@gmail.com}{Omer Kara}
 }

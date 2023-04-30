@@ -33,5 +33,5 @@ hoCoef(your.model, term = 4, bo = 3, alt = "greater") ## Do not run.
 The hoCoef function is taken directly from the FSA package (version 0.8.32). For more information see \href{https://cran.r-project.org/web/packages/FSA/index.html}{here}.
 }
 \author{
-\href{mailto:omer.kara.ylsy@gmail.com}{Ömer Kara}
+\href{mailto:omer.kara.ylsy@gmail.com}{Omer Kara}
 }

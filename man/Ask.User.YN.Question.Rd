@@ -30,5 +30,5 @@ if (Ask.User.YN.Question("Your question goes here?", GUI = FALSE, add.lines.befo
 
 }
 \author{
-\href{mailto:omer.kara.ylsy@gmail.com}{Ömer Kara}
+\href{mailto:omer.kara.ylsy@gmail.com}{Omer Kara}
 }

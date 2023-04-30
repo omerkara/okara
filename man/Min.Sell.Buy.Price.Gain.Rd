@@ -32,5 +32,5 @@ Min.Sell.Buy.Price.Gain(Price = 100, Gain.Per = 2.5, Fee.Per = 0.05, Round = 4)
 
 }
 \author{
-\href{mailto:omer.kara.ylsy@gmail.com}{Ömer Kara}
+\href{mailto:omer.kara.ylsy@gmail.com}{Omer Kara}
 }

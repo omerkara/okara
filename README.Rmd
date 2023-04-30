@@ -10,13 +10,17 @@ knitr::opts_chunk$set(cache = FALSE, collapse = TRUE, comment = "#>", echo = TRU
 
 # okara
 <!-- badges: start -->
-`r badger::badge_license()`
+`r badger::badge_repostatus("Active")`
+`r badger::badge_last_commit("omerkara/okara")`
 `r badger::badge_devel("omerkara/okara", "blue")`
-[![star this repo](https://githubbadges.com/star.svg?user=omerkara&repo=okara&style=default)](https://github.com/omerkara/okara)
-[![fork this repo](https://githubbadges.com/fork.svg?user=omerkara&repo=okara&style=default)](https://github.com/omerkara/okara/fork)
+`r badger::badge_dependencies("badger")`
+`r badger::badge_code_size("omerkara/okara")`
+`r badger::badge_license()`
+<!-- [![star this repo](https://githubbadges.com/star.svg?user=omerkara&repo=okara&style=default)](https://github.com/omerkara/okara) -->
+<!-- [![fork this repo](https://githubbadges.com/fork.svg?user=omerkara&repo=okara&style=default)](https://github.com/omerkara/okara/fork) -->
 <!-- badges: end -->
 
-[Ömer Kara](https://drive.google.com/file/d/1riCNALzVc6QsYIGVIlfGYIeEqMLQ_jfQ/preview)
+[Ömer Kara](https://omerkara.netlify.app/)
 
 ---
 

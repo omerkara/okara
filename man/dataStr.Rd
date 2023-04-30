@@ -21,6 +21,9 @@ This function lists the data sets (with their structure) in specified R packages
 }
 \examples{
 \dontrun{
+dataStr() ## All loaded packages on search path (package = NULL).
+dataStr("datasets") ## Only datasets in base R.
+dataStr("colorspace") ## Works with an installed but unloaded package.
 }
 
 }
@@ -31,5 +34,5 @@ This function is taken from \href{https://github.com/brry/berryFunctions/blob/ma
 \code{\link{str}}
 }
 \author{
-\href{mailto:omer.kara.ylsy@gmail.com}{Ömer Kara}
+\href{mailto:omer.kara.ylsy@gmail.com}{Omer Kara}
 }

@@ -30,5 +30,5 @@ sampled(1:5, 2)
 For more information see \code{\link[base]{sample}}.
 }
 \author{
-\href{mailto:omer.kara.ylsy@gmail.com}{Ömer Kara}
+\href{mailto:omer.kara.ylsy@gmail.com}{Omer Kara}
 }

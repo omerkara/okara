@@ -65,5 +65,5 @@ ggplot2 + scale_x_continuous(labels = human_tl)
 These functions are taken from \href{https://github.com/fdryan/R/blob/master/ggplot2_formatter.r}{here}.
 }
 \author{
-\href{mailto:omer.kara.ylsy@gmail.com}{Ömer Kara}
+\href{mailto:omer.kara.ylsy@gmail.com}{Omer Kara}
 }

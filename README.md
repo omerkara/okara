@@ -5,17 +5,20 @@
 
 <!-- badges: start -->
 
+[![Project Status: Active - The project has reached a stable, usable
+state and is being actively
+developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active)
+[![](https://img.shields.io/github/last-commit/omerkara/okara.svg)](https://github.com/omerkara/okara/commits/master)
+[![](https://img.shields.io/badge/devel%20version-1.1.8-blue.svg)](https://github.com/omerkara/okara)
+[![Dependencies](https://tinyverse.netlify.com/badge/badger)](https://cran.r-project.org/package=badger)
+[![](https://img.shields.io/github/languages/code-size/omerkara/okara.svg)](https://github.com/omerkara/okara)
 [![License:
 MIT](https://img.shields.io/badge/license-MIT-blue.svg)](https://cran.r-project.org/web/licenses/MIT)
-[![](https://img.shields.io/badge/devel%20version-1.1.7-blue.svg)](https://github.com/omerkara/okara)
-[![star this
-repo](https://githubbadges.com/star.svg?user=omerkara&repo=okara&style=default)](https://github.com/omerkara/okara)
-[![fork this
-repo](https://githubbadges.com/fork.svg?user=omerkara&repo=okara&style=default)](https://github.com/omerkara/okara/fork)
+<!-- [![star this repo](https://githubbadges.com/star.svg?user=omerkara&repo=okara&style=default)](https://github.com/omerkara/okara) -->
+<!-- [![fork this repo](https://githubbadges.com/fork.svg?user=omerkara&repo=okara&style=default)](https://github.com/omerkara/okara/fork) -->
 <!-- badges: end -->
 
-[Ömer
-Kara](https://drive.google.com/file/d/1riCNALzVc6QsYIGVIlfGYIeEqMLQ_jfQ/preview)
+[Ömer Kara](https://omerkara.netlify.app/)
 
 ------------------------------------------------------------------------
 
