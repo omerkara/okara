@@ -9,7 +9,7 @@
 state and is being actively
 developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active)
 [![](https://img.shields.io/github/last-commit/omerkara/okara.svg)](https://github.com/omerkara/okara/commits/master)
-[![](https://img.shields.io/badge/devel%20version-1.1.8-blue.svg)](https://github.com/omerkara/okara)
+[![](https://img.shields.io/badge/devel%20version-1.1.9-blue.svg)](https://github.com/omerkara/okara)
 [![Dependencies](https://tinyverse.netlify.com/badge/badger)](https://cran.r-project.org/package=badger)
 [![](https://img.shields.io/github/languages/code-size/omerkara/okara.svg)](https://github.com/omerkara/okara)
 [![License:

@@ -33,14 +33,11 @@
 #====================#
 if (interactive()) {
     suppressMessages(require(devtools))
-    suppressMessages(require(usethis))
     suppressMessages(require(roxygen2))
+    suppressMessages(require(usethis))
     suppressMessages(require(testthat))
     suppressMessages(require(knitr))
     suppressMessages(require(badger))
-
-    suppressMessages(require(sp))
-    suppressMessages(require(fields))
 }
 
 #==================================== END ======================================

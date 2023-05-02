@@ -22,11 +22,13 @@
 #'
 #' @author \href{mailto:omer.kara.ylsy@@gmail.com}{Omer Kara}
 #'
+#' @import stringr tidyr lubridate
+#'
 #' @references
 #'
 #' @seealso
 #'
-#' @return Three data.frames called "Time.Detail", "Total.Days", "Total.Weeks", and "total.hours".
+#' @return Three data.frames called "Time.Detail", "Total.Days", "Total.Weeks", and a vector "total.hours".
 #'
 #' @examples
 #' \dontrun{
@@ -49,7 +51,7 @@ Time.Keeping <- function(Hours.Punch, First.Date = NULL, Last.Date = NULL, Exclu
     # Loading the time keeping data which will be Time.Detail data.
     data <- utils::read.delim(Hours.Punch, header = TRUE, sep = "\t", dec = ".", colClasses = c("character"), comment.char = "", na.string = "", encoding = "latin1")
 
-    data <- data %>% tidyr::separate(Punch.Time.Stamp, c("Date", "Time"), sep = " ", extra = "merge")
+    data <- tidyr::separate(data, "Punch.Time.Stamp", c("Date", "Time"), sep = " ", extra = "merge")
     data <- data.frame(sapply(data, function(trim) stringr::str_trim(trim, side = "both")), stringsAsFactors = FALSE) ## Trimming every cell for possible empty space.
     data$Punch.Time.Stamp <- paste(data$Date, data$Time)
     data$Punch.Time.Stamp <- strptime(data$Punch.Time.Stamp, "%Y-%m-%d %I:%M:%S %p")
@@ -155,22 +157,17 @@ Time.Keeping <- function(Hours.Punch, First.Date = NULL, Last.Date = NULL, Exclu
     Total.Days <- rbind(Total.Days, c("Total", "", round(sum(Total.Days$Second, na.rm = TRUE), 2), round(sum(Total.Days$Minute, na.rm = TRUE), 2), round(sum(Total.Days$Hour, na.rm = TRUE), 2)))
     Total.Weeks <- rbind(Total.Weeks, c("Total", "", round(sum(Total.Weeks$Second, na.rm = TRUE), 2), round(sum(Total.Weeks$Minute, na.rm = TRUE), 2), round(sum(Total.Weeks$Hour, na.rm = TRUE), 2)))
 
-    # Total hours is returned.
+    # Total hours.
     total.hours <- as.numeric(Total.Days$Hour[nrow(Total.Days)])
-
-    # The message for your total hours.
-    message(paste0("Total: ", total.hours, " hours"))
-
-    # Output data will be named as "Time.Detail", "Total.Days", and "Total.Weeks".
-    assign("Time.Detail", data, envir = globalenv()) ## The details of your time keeping.
-    assign("Total.Days", Total.Days, envir = globalenv()) ## Total time by day.
-    assign("Total.Weeks", Total.Weeks, envir = globalenv()) ## Total time by week.
 
     # Revert the working directory to initial path.
     setwd(WD.temp)
 
-    # Return total.hours.
-    return(total.hours)
+    # The message for your total hours.
+    message(paste0("Total: ", total.hours, " hours"))
+
+    # Return total.hours, Time.Detail (details of your time keeping), Total.Days (total time by day), and Total.Weeks (total time by week).
+    return(list(Time.Detail = data, Total.Days = Total.Days, Total.Weeks = Total.Weeks, Total.Hours = total.hours))
 }
 
 #============================= Min.Sell.Buy.Price ==============================

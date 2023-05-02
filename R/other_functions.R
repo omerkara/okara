@@ -20,6 +20,8 @@
 #'
 #' @author \href{mailto:omer.kara.ylsy@@gmail.com}{Omer Kara}
 #'
+#' @import devtools utils
+#'
 #' @references
 #'
 #' @seealso
@@ -158,6 +160,8 @@ Proceed.or.Stop <- function(result) {
 #' @note
 #'
 #' @author \href{mailto:omer.kara.ylsy@@gmail.com}{Omer Kara}
+#'
+#' @import utils
 #'
 #' @references
 #'

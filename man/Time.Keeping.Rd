@@ -24,7 +24,7 @@ Time.Keeping(
 \item{Target.Hours}{numeric. Default is NULL. If a numeric value is given, the remaining hours for the current week is messaged.}
 }
 \value{
-Three data.frames called "Time.Detail", "Total.Days", "Total.Weeks", and "total.hours".
+Three data.frames called "Time.Detail", "Total.Days", "Total.Weeks", and a vector "total.hours".
 }
 \description{
 This function keeps the punched hours for hourly jobs.

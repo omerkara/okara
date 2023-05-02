@@ -1,16 +1,20 @@
 Package: okara
 Title: Omer Kara's Personal Utility Functions
-Version: 1.1.8
-Authors@R: 
+Version: 1.1.9
+Authors@R: c(
     person(given = "Omer",
            family = "Kara",
-           role = c("aut", "cre"),
+           role = c("aut", "cre", "cph"),
            email = "omer.kara.ylsy@gmail.com",
-           comment = c(ORCID = "0000-0001-7697-0319"))
+           comment = c(ORCID = "0000-0001-7697-0319")
+    )
+    )
 Description: The okara package consists of Omer Kara's frequently used
     utility functions about the following topics. Data manipulation, data
     utility, graphic/plotting, estimation, spatial analysis, package 
     installing/loading and some other utility functions.
+Depends:
+    R (>= 3.4.2)
 License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true

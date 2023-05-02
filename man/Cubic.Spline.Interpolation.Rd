@@ -12,13 +12,13 @@ Cubic.Spline.Interpolation(Data, Column.Names)
 \item{Column.Names}{character. Name of the columns to be interpolated.}
 }
 \value{
-An data.frame named as "data.interpolate" exported to the general environment.
+An data.frame called "data.interpolate".
 }
 \description{
 This function interpolates the selected columns of a data frame with cubic spline interpolation.
 }
 \details{
-The aim of this function is to interpolate the values between two entries. The argument maxgap in \code{\link[zoo]{na.spline}} function is internally selected in this function to interpolate all missing values. na.rm argument in \code{\link[zoo]{na.spline}} function is selected as FALSE since other NA values should be kept, if there is any.
+The aim of this function is to interpolate the values between two entries. The argument maxgap in \code{\link[zoo]{na.spline}} function is internally selected in this function to interpolate all missing values. \code{na.rm} argument in \code{\link[zoo]{na.spline}} function is selected as FALSE since other NA values should be kept, if there is any.
 }
 \examples{
 \dontrun{

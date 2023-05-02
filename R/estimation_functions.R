@@ -21,6 +21,8 @@
 #'
 #' @author \href{mailto:omer.kara.ylsy@@gmail.com}{Omer Kara}
 #'
+#' @import car stats
+#'
 #' @references
 #'
 #' @seealso
@@ -68,6 +70,8 @@ SummaryR.lm <- function(model, type = c("hc3", "hc0", "hc1", "hc2", "hc4"), ...)
 #' @note
 #'
 #' @author \href{mailto:omer.kara.ylsy@@gmail.com}{Omer Kara}
+#'
+#' @import car stats
 #'
 #' @references The hoCoef function is taken directly from the FSA package (version 0.8.32). For more information see \href{https://cran.r-project.org/web/packages/FSA/index.html}{here}.
 #'

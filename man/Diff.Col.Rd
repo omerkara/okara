@@ -4,14 +4,12 @@
 \alias{Diff.Col}
 \title{Difference of Subset Columns}
 \usage{
-Diff.Col(Data, Diff.ColNames, Output)
+Diff.Col(Data, Diff.ColNames)
 }
 \arguments{
 \item{Data}{ts object.}
 
 \item{Diff.ColNames}{character. Name of the columns to be differenced.}
-
-\item{Output}{character. Name of the output.}
 }
 \value{
 A first difference taken ts object with a user selected name.
@@ -22,7 +20,7 @@ This function takes the difference of specified columns in a ts object. It shoul
 \examples{
 x <- data.frame(V1 = c(1:10), V2 = c(1:10), V3 = c(1:10))
 x.ts <- ts(x)
-Diff.Col(Data = x.ts, Diff.ColNames = c("V1", "V3"), Output = "data.diff")
+data.diff <- Diff.Col(Data = x.ts, Diff.ColNames = c("V1", "V3"))
 data.diff
 
 }

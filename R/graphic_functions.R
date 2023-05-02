@@ -19,6 +19,8 @@
 #'
 #' @author \href{mailto:omer.kara.ylsy@@gmail.com}{Omer Kara}
 #'
+#' @import ggplot2
+#'
 #' @references
 #'
 #' @seealso
@@ -56,6 +58,8 @@ g_legend <- function(a.gplot) {
 #' @note
 #'
 #' @author \href{mailto:omer.kara.ylsy@@gmail.com}{Omer Kara}
+#'
+#' @import ggplot2 grid
 #'
 #' @references For more information see \href{https://stackoverflow.com/questions/47916307/specify-position-of-geom-text-by-keywords-like-top-bottom-left-right}{here}.
 #'

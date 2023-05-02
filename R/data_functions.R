@@ -49,17 +49,19 @@ Head.Tail <- function(x, Select) {
 #' @param Data data.frame. Data as in data.frame class.
 #' @param Column.Names character. Name of the columns to be interpolated.
 #'
-#' @details The aim of this function is to interpolate the values between two entries. The argument maxgap in \code{\link[zoo]{na.spline}} function is internally selected in this function to interpolate all missing values. na.rm argument in \code{\link[zoo]{na.spline}} function is selected as FALSE since other NA values should be kept, if there is any.
+#' @details The aim of this function is to interpolate the values between two entries. The argument maxgap in \code{\link[zoo]{na.spline}} function is internally selected in this function to interpolate all missing values. \code{na.rm} argument in \code{\link[zoo]{na.spline}} function is selected as FALSE since other NA values should be kept, if there is any.
 #'
 #' @note
 #'
 #' @author \href{mailto:omer.kara.ylsy@@gmail.com}{Omer Kara}
 #'
+#' @import zoo
+#'
 #' @references
 #'
 #' @seealso
 #'
-#' @return An data.frame named as "data.interpolate" exported to the general environment.
+#' @return An data.frame called "data.interpolate".
 #'
 #' @examples
 #' \dontrun{
@@ -117,9 +119,7 @@ Cubic.Spline.Interpolation <- function(Data, Column.Names) {
         }
     }
     Data <- main[, col.names]
-
-    # Naming and extracting the Data file to the general environment.
-    assign("data.interpolate", Data, envir = globalenv()) ## Output data will be named as "data.interpolate".
+    return(Data)
 }
 
 #================================ DigitsByRows =================================
@@ -169,7 +169,6 @@ DigitsByRows <- function(df, digits) {
 #'
 #' @param Data ts object.
 #' @param Diff.ColNames character. Name of the columns to be differenced.
-#' @param Output character. Name of the output.
 #'
 #' @details
 #'
@@ -186,12 +185,12 @@ DigitsByRows <- function(df, digits) {
 #' @examples
 #' x <- data.frame(V1 = c(1:10), V2 = c(1:10), V3 = c(1:10))
 #' x.ts <- ts(x)
-#' Diff.Col(Data = x.ts, Diff.ColNames = c("V1", "V3"), Output = "data.diff")
+#' data.diff <- Diff.Col(Data = x.ts, Diff.ColNames = c("V1", "V3"))
 #' data.diff
 #'
 #' @export
 #'
-Diff.Col <- function(Data, Diff.ColNames, Output) {
+Diff.Col <- function(Data, Diff.ColNames) {
     temp.level <- Data[-1, colnames(Data)[!(colnames(Data) %in% Diff.ColNames)], drop = FALSE]
     temp.diff <- base::diff(Data[ , colnames(Data)[colnames(Data) %in% Diff.ColNames], drop = FALSE], lag = 1, diff = 1)
     main <- cbind(temp.level, temp.diff)
@@ -203,7 +202,7 @@ Diff.Col <- function(Data, Diff.ColNames, Output) {
     }
     colnames(main) <- gsub("(temp.level.)|(temp.diff.)", "", colnames(main))
     main <- main[, colnames(Data)]
-    assign(Output, main, envir = globalenv()) ## Output data will be named as the selected Output.
+    return(main)
 }
 
 #========================= Data Conversion Functions ===========================
