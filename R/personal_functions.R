@@ -116,7 +116,7 @@ Time.Keeping <- function(Hours.Punch, First.Date = NULL, Last.Date = NULL, Exclu
     }
 
     Total.Days$Minute <- Total.Days$Second / 60
-    Total.Days$Hour <- Total.Days$Minute / 60
+    Total.Days$Hour <- okara::roundN(Total.Days$Minute / 60, 2)
 
     ## Total.Weeks data.
     Total.Weeks <- Total.Days
@@ -145,26 +145,35 @@ Time.Keeping <- function(Hours.Punch, First.Date = NULL, Last.Date = NULL, Exclu
             minutes.left <- hours.left * 60
             seconds.left <- hours.left * 60 * 60
             target.time <- Sys.time() + seconds.left
-            message(minutes.left %/% 60, " hours and ", round(minutes.left %% 60, 0), " minutes left in the current week.")
-            message(paste0("Hours left: ", round(hours.left, 2)))
-            message(paste0("Minutes left: ", round(minutes.left, 2)))
-            message(paste0("Seconds left: ", round(seconds.left)))
+            message(minutes.left %/% 60, " hours and ", okara::roundN(minutes.left %% 60, 0), " minutes left in the current week.")
+            message(paste0("Hours left: ", okara::roundN(hours.left, 2)))
+            message(paste0("Minutes left: ", okara::roundN(minutes.left, 2)))
+            message(paste0("Seconds left: ", okara::roundN(seconds.left, 0)))
             message(paste0("Target time: ", format(target.time, "%Y-%m-%d %H:%M:%S")))
         }
     }
 
-    # Totals for Total.Days and Total.Weeks
-    Total.Days <- rbind(Total.Days, c("Total", "", round(sum(Total.Days$Second, na.rm = TRUE), 2), round(sum(Total.Days$Minute, na.rm = TRUE), 2), round(sum(Total.Days$Hour, na.rm = TRUE), 2)))
-    Total.Weeks <- rbind(Total.Weeks, c("Total", "", round(sum(Total.Weeks$Second, na.rm = TRUE), 2), round(sum(Total.Weeks$Minute, na.rm = TRUE), 2), round(sum(Total.Weeks$Hour, na.rm = TRUE), 2)))
+    # Creating Hours.Minutes variable for Total.Days and Total.Weeks.
+    Total.Days$Hour.Minute <- paste0(okara::roundN(Total.Days$Minute %/% 60, 0), " ", "Hours", " and ", okara::roundN(Total.Days$Minute %% 60, 0), " ", "Minutes")
+    Total.Days$Hour.Minute <- gsub("^NA.*", NA, Total.Days$Hour.Minute)
+    Total.Weeks$Hour.Minute <- paste0(okara::roundN(Total.Weeks$Minute %/% 60, 0), " ", "Hours", " and ", okara::roundN(Total.Weeks$Minute %% 60, 0), " ", "Minutes")
+    Total.Weeks$Hour.Minute <- gsub("^NA.*", NA, Total.Weeks$Hour.Minute)
+
+    # Totals for Total.Days and Total.Weeks.
+    Total.Days <- rbind(Total.Days, c("Total", "", okara::roundN(sum(Total.Days$Second, na.rm = TRUE), 2), okara::roundN(sum(Total.Days$Minute, na.rm = TRUE), 2), okara::roundN(sum(Total.Days$Hour, na.rm = TRUE), 2), paste0(okara::roundN(sum(Total.Days$Minute, na.rm = TRUE) %/% 60, 0), " ", "Hours", " and ", okara::roundN(sum(Total.Days$Minute, na.rm = TRUE) %% 60, 0), " ", "Minutes")))
+    Total.Weeks <- rbind(Total.Weeks, c("Total", "", okara::roundN(sum(Total.Weeks$Second, na.rm = TRUE), 2), okara::roundN(sum(Total.Weeks$Minute, na.rm = TRUE), 2), okara::roundN(sum(Total.Weeks$Hour, na.rm = TRUE), 2), paste0(okara::roundN(sum(Total.Weeks$Minute, na.rm = TRUE) %/% 60, 0), " ", "Hours", " and ", okara::roundN(sum(Total.Weeks$Minute, na.rm = TRUE) %% 60, 0), " ", "Minutes")))
 
     # Total hours.
     total.hours <- as.numeric(Total.Days$Hour[nrow(Total.Days)])
+
+    # Total hours and minutes.
+    total.hour.minutes <- Total.Days$Hour.Minute[nrow(Total.Days)]
 
     # Revert the working directory to initial path.
     setwd(WD.temp)
 
     # The message for your total hours.
-    message(paste0("Total: ", total.hours, " hours"))
+    message(paste0("Total: ", total.hours, " hours", " | ", total.hour.minutes))
 
     # Return total.hours, Time.Detail (details of your time keeping), Total.Days (total time by day), and Total.Weeks (total time by week).
     return(list(Time.Detail = data, Total.Days = Total.Days, Total.Weeks = Total.Weeks, Total.Hours = total.hours))

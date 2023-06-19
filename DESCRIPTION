@@ -1,6 +1,6 @@
 Package: okara
 Title: Omer Kara's Personal Utility Functions
-Version: 1.1.9
+Version: 1.1.10
 Authors@R: c(
     person(given = "Omer",
            family = "Kara",
